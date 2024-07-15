@@ -1,6 +1,7 @@
 import 'package:cappuccino/color_palette.dart';
 import 'package:cappuccino/models/statistic.dart';
 import 'package:cappuccino/screens/item_details.dart';
+import 'package:cappuccino/services/api_service.dart';
 import 'package:flutter/material.dart' hide SearchBar;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
@@ -10,6 +11,8 @@ import 'package:iconify_flutter/icons/ph.dart';
 import 'package:iconify_flutter/icons/ri.dart';
 import 'package:iconify_flutter/icons/ci.dart';
 import 'package:iconify_flutter/icons/game_icons.dart';
+import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
+
 
 import 'models/coffee_item.dart';
 
@@ -21,12 +24,8 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  final List<String> coffeeTypes = [
-    'Cappuccino',
-    'Espresso',
-    'Latte',
-    'Flat White'
-  ];
+  final ApiService apiService = ApiService();
+  dynamic coffeeItems;
 
   final List<Statistic> statisics = [
     Statistic(
@@ -34,8 +33,22 @@ class _DashboardPageState extends State<DashboardPage> {
     Statistic(count: "380", label: "Consumed Coffee", icon: Iconoir.coffee_cup),
   ];
 
-  String selectedItem = 'Cappuccino';
-  int counter = -1;
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  void fetchData() async {
+    try {
+      final response = await apiService.getRequest('/menu');
+      setState(() {
+        coffeeItems = response['data']['menus'];
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
 
   final List<CoffeeItem> coffeeList = [
     CoffeeItem(
@@ -194,7 +207,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     crossAxisCount: 2,
                     childAspectRatio: 0.72,
                     children: [
-                      ...coffeeList.map((e) {
+                      ...coffeeItems.map((e) {
                         return _buildCoffeeItem(e);
                       }).toList()
                     ],
@@ -208,7 +221,7 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  Widget _buildCoffeeItem(CoffeeItem cItem) {
+  Widget _buildCoffeeItem(cItem) {
     return GestureDetector(
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
@@ -242,7 +255,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       width: 150.0,
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage(cItem.itemImg!),
+                            image: NetworkImage(cItem['thumbnail']!),
                             fit: BoxFit.cover,
                           ),
                           borderRadius: BorderRadius.circular(10.0)),
@@ -269,7 +282,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               size: 15.0,
                             ),
                             Text(
-                              cItem.rating.toString(),
+                              cItem['availableCoupon'].toString(),
                               style: GoogleFonts.sourceSans3(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -284,10 +297,10 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
               ),
               Padding(
-              padding: const EdgeInsets.only(left: 10.0, top: 10.0),
+              padding: const EdgeInsets.only(top: 10.0, bottom: 5.0),
               child: Center(
                 child: Text(
-                  cItem.title!,
+                  cItem['name']!,
                   style: GoogleFonts.sourceSans3(
                       color: Colors.white,
                       fontSize: 20.0,
@@ -296,10 +309,12 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
               ),
               Padding(
-              padding: const EdgeInsets.only(left: 10.0, bottom: 5.0),
+              padding: const EdgeInsets.only(bottom: 5.0),
               child: Center(
                 child: Text(
-                  cItem.subtitle!,
+                  cItem['ingredients'].map((item) {
+                    return toBeginningOfSentenceCase(item.toString());
+                  }).join(', '),
                   style: GoogleFonts.sourceSans3(
                       color: Colors.white, fontSize: 14.0),
                 ),
