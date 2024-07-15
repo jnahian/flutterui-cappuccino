@@ -31,10 +31,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts: ^3.0.1
+  google_fonts: ^6.2.1
   colorful_iconify_flutter: ^0.0.2
-  iconify_flutter: ^0.0.4
-  flutter_rating_stars: ^1.0.3+4
+  iconify_flutter: ^0.0.5
+  flutter_rating_stars: ^1.1.0
   glassmorphism_ui: ^0.3.0
 
 
@@ -69,7 +69,7 @@ flutter:
     - assets/images/beansbottom.jpg
     - assets/images/coffeemain.jpg
     - assets/images/secondary.jpg
-    - assets/images/model.png
+    - assets/images/user.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

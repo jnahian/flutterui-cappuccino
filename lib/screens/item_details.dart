@@ -2,8 +2,6 @@ import 'package:cappuccino/color_palette.dart';
 import 'package:cappuccino/models/coffee_item.dart';
 import 'package:colorful_iconify_flutter/icons/vscode_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
@@ -118,14 +116,14 @@ class _ItemDetailsState extends State<ItemDetails> {
                         children: [
                           Text(
                             widget.cItem.title!,
-                            style: GoogleFonts.sourceSansPro(
+                            style: GoogleFonts.sourceSans3(
                                 color: Colors.white,
                                 fontSize: 25.0,
                                 fontWeight: FontWeight.bold),
                           ),
                           Text(
                             widget.cItem.subtitle!,
-                            style: GoogleFonts.sourceSansPro(
+                            style: GoogleFonts.sourceSans3(
                                 color: Color(0xFFADADAD), fontSize: 17.0),
                           ),
                           SizedBox(height: 10.0),
@@ -139,7 +137,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                               SizedBox(width: 10.0),
                               Text(
                                 widget.cItem.rating.toString(),
-                                style: GoogleFonts.sourceSansPro(
+                                style: GoogleFonts.sourceSans3(
                                     color: Colors.white,
                                     fontSize: 17.0,
                                     fontWeight: FontWeight.bold),
@@ -147,7 +145,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                               SizedBox(width: 10.0),
                               Text(
                                 '(6,986)',
-                                style: GoogleFonts.sourceSansPro(
+                                style: GoogleFonts.sourceSans3(
                                   color: Color(0xFFADADAD),
                                   fontSize: 15.0,
                                 ),
@@ -185,7 +183,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                                     SizedBox(height: 2.0),
                                     Text(
                                       'Coffee',
-                                      style: GoogleFonts.sourceSansPro(
+                                      style: GoogleFonts.sourceSans3(
                                         color: Color(0xFF909193),
                                         fontSize: 12.0,
                                       ),
@@ -210,7 +208,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                                     SizedBox(height: 2.0),
                                     Text(
                                       'Milk',
-                                      style: GoogleFonts.sourceSansPro(
+                                      style: GoogleFonts.sourceSans3(
                                         color: Color(0xFF909193),
                                         fontSize: 12.0,
                                       ),
@@ -232,7 +230,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                                     color: Color(0xFF0F1419)),
                                 child: Center(
                                   child: Text('Medium Roasted',
-                                      style: GoogleFonts.sourceSansPro(
+                                      style: GoogleFonts.sourceSans3(
                                         color: Color(0xFF909193),
                                         fontSize: 12.0,
                                       )),
@@ -261,7 +259,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                       children: [
                         Text(
                           'Description',
-                          style: GoogleFonts.sourceSansPro(
+                          style: GoogleFonts.sourceSans3(
                               color: Color(0xFF999A9B), fontSize: 17.0),
                         ),
                         SizedBox(height: 10.0),
@@ -270,14 +268,14 @@ class _ItemDetailsState extends State<ItemDetails> {
                           width: screenWidth - 30.0,
                           child: Text(
                             'A cappuccino is a coffee-based drink made primarily from espresso and milk',
-                            style: GoogleFonts.sourceSansPro(
+                            style: GoogleFonts.sourceSans3(
                                 color: Colors.white, fontSize: 17.0),
                           ),
                         ),
                         SizedBox(height: 10.0),
                         Text(
                           'Size',
-                          style: GoogleFonts.sourceSansPro(
+                          style: GoogleFonts.sourceSans3(
                               color: Color(0xFF999A9B), fontSize: 17.0),
                         ),
                         SizedBox(height: 10.0),
@@ -303,14 +301,14 @@ class _ItemDetailsState extends State<ItemDetails> {
                                 child: Column(
                                   children: [
                                     Text('Price',
-                                        style: GoogleFonts.sourceSansPro(
+                                        style: GoogleFonts.sourceSans3(
                                             color: Color(0xFF999A9B),
                                             fontSize: 17.0)),
                                     Row(
                                       children: [
                                         Text(
                                           '\$ ',
-                                          style: GoogleFonts.sourceSansPro(
+                                          style: GoogleFonts.sourceSans3(
                                               fontWeight: FontWeight.bold,
                                               color:
                                                   ColorPalette().coffeeSelected,
@@ -318,7 +316,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                                         ),
                                         Text(
                                           widget.cItem.price.toString(),
-                                          style: GoogleFonts.sourceSansPro(
+                                          style: GoogleFonts.sourceSans3(
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white,
                                               fontSize: 20.0),
@@ -339,7 +337,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                                           BorderRadius.circular(20.0)),
                                   child: Center(
                                     child: Text('Buy Now',
-                                        style: GoogleFonts.sourceSansPro(
+                                        style: GoogleFonts.sourceSans3(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white,
                                             fontSize: 17.0)),
@@ -388,7 +386,7 @@ class _ItemDetailsState extends State<ItemDetails> {
           child: Center(
             child: Text(
               title,
-              style: GoogleFonts.sourceSansPro(
+              style: GoogleFonts.sourceSans3(
                   color: index == selectedIndex
                       ? ColorPalette().coffeeSelected
                       : Color(0xFFADADAD),
