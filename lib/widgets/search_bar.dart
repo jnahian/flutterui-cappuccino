@@ -1,4 +1,4 @@
-import 'package:cappuccino/color_palette.dart';
+import 'package:wp_cafe/enums/color_palette.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
