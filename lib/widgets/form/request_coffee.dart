@@ -57,35 +57,32 @@ class RequestCoffeeState extends State<RequestCoffee> {
                 ),
               ),
               const SizedBox(height: 10.0),
-              TextFormField(
-                controller: _instruction,
-                keyboardType: TextInputType.multiline,
-                minLines: 3,
-                maxLines: 5,
-                autofocus: false,
-                // validator: (value) {
-                //   if (value == null || value.isEmpty) {
-                //     return 'Please enter instructions';
-                //   }
-                //   return null;
-                // },
-                decoration: InputDecoration(
-                  filled: true,
-                  hintText: 'Request instruction (i.e. No Sugar)',
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
-                  hintStyle: GoogleFonts.sourceSans3(
-                    color: const Color(0xFF525559),
+              Container(
+                width: screenWidth - 30.0,
+                child: TextFormField(
+                  controller: _instruction,
+                  keyboardType: TextInputType.multiline,
+                  minLines: 3,
+                  maxLines: 5,
+                  autofocus: false,
+                  decoration: InputDecoration(
+                    filled: true,
+                    hintText: 'Request instruction (i.e. No Sugar)',
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
+                    hintStyle: GoogleFonts.sourceSans3(
+                      color: const Color(0xFF525559),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    fillColor: ColorPalette().searchBarFill,
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide(color: ColorPalette().coffeeSelected),
+                    ),
                   ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  fillColor: ColorPalette().searchBarFill,
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: BorderSide(color: ColorPalette().coffeeSelected),
-                  ),
+                  style: GoogleFonts.sourceSans3(color: ColorPalette().inputTextColor),
                 ),
-                style: GoogleFonts.sourceSans3(color: ColorPalette().inputTextColor),
               ),
               const SizedBox(height: 10.0),
               Container(
@@ -118,7 +115,7 @@ class RequestCoffeeState extends State<RequestCoffee> {
                 onTap: state is! OrderLoading ? _requestCoffee : null,
                 child: Container(
                   height: 50.0,
-                  width: screenWidth,
+                  width: screenWidth - 30,
                   padding: const EdgeInsets.symmetric(horizontal: 15.0),
                   decoration: BoxDecoration(
                     color: ColorPalette().coffeeSelected,
