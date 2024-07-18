@@ -7,15 +7,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:wp_cafe/widgets/form/request_coffee.dart';
 
-class ItemDetails extends StatefulWidget {
+class RequestCoffeeScreen extends StatefulWidget {
   final dynamic cItem;
-  const ItemDetails({super.key, required this.cItem});
+  const RequestCoffeeScreen({super.key, required this.cItem});
 
   @override
-  State<ItemDetails> createState() => _ItemDetailsState();
+  State<RequestCoffeeScreen> createState() => _RequestCoffeeScreenState();
 }
 
-class _ItemDetailsState extends State<ItemDetails> {
+class _RequestCoffeeScreenState extends State<RequestCoffeeScreen> {
   int selectedIndex = 0;
 
   @override

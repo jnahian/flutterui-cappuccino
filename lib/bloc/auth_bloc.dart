@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:localstorage/localstorage.dart';
 import '../services/api_service.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
@@ -14,10 +15,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> _onAuthenticateUser(AuthenticateUser event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
     try {
-      final response = await apiService.authenticateUser(event.username, event.password);
-      // apiService.setToken(response['token']);
-      emit(Authenticated(response['token']));
-      // add(const FetchUserData());
+      final response = await apiService.authenticateUser(event.email, event.password);
+      localStorage.setItem('token', response['data']['token']);
+      emit(Authenticated(response['data']['token']));
+      emit(UserDataLoaded(response['data']['user']));
     } catch (e) {
       emit(AuthError(e.toString()));
     }

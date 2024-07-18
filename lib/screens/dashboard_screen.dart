@@ -8,6 +8,7 @@ import 'package:iconify_flutter/icons/heroicons.dart';
 import 'package:iconify_flutter/icons/iconoir.dart';
 import 'package:iconify_flutter/icons/ph.dart';
 import 'package:iconify_flutter/icons/ri.dart';
+import 'package:iconify_flutter/icons/ic.dart';
 import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 import 'package:wp_cafe/bloc/auth_bloc.dart';
 import 'package:wp_cafe/bloc/auth_state.dart';
@@ -17,16 +18,17 @@ import 'package:wp_cafe/bloc/menu_state.dart';
 import 'package:wp_cafe/enums/color_palette.dart';
 import 'package:wp_cafe/enums/icon_palette.dart';
 import 'package:wp_cafe/models/statistic.dart';
+import 'package:wp_cafe/screens/login_screen.dart';
 import 'package:wp_cafe/screens/request_coffee_screen.dart';
 
-class DashboardPage extends StatefulWidget {
-  const DashboardPage({super.key});
+class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({super.key});
 
   @override
-  State<DashboardPage> createState() => _DashboardPageState();
+  State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
-class _DashboardPageState extends State<DashboardPage> {
+class _DashboardScreenState extends State<DashboardScreen> {
   dynamic coffeeItems;
 
   final List<Statistic> statistics = [
@@ -224,7 +226,11 @@ class _DashboardPageState extends State<DashboardPage> {
                             ),
                           );
                         } else if (state is MenuError) {
-                          return Center(child: Text('Error: ${state.message}'));
+                          return Center(
+                              child: Text(
+                            'Error: ${state.message}',
+                            style: TextStyle(color: Colors.red),
+                          ));
                         }
                         return const Center(child: Text('Press the button to fetch posts'));
                       },
@@ -242,7 +248,7 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget _buildCoffeeItem(cItem) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ItemDetails(cItem: cItem)));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => RequestCoffeeScreen(cItem: cItem)));
       },
       child: Container(
         height: 220.0,
@@ -387,15 +393,21 @@ class _DashboardPageState extends State<DashboardPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            child: const Iconify(
-              Heroicons.home,
+          GestureDetector(
+            onTap: () {},
+            child: Iconify(
+              IconPalette().home,
               color: Color(0xFFD17742),
             ),
           ),
-          const Iconify(
-            Ph.handbag_fill,
-            color: Color(0xFF4E4F53),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginScreen()));
+            },
+            child: const Iconify(
+              Ic.round_login,
+              color: Color(0xFF4E4F53),
+            ),
           ),
           const Iconify(
             Ri.heart_2_fill,

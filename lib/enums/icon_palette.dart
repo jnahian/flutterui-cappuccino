@@ -6,6 +6,7 @@ import 'package:iconify_flutter/icons/material_symbols.dart';
 import 'package:iconify_flutter/icons/tabler.dart';
 
 class IconPalette {
+  final String home = Iconoir.home_alt;
   final String coffeeCup = Iconoir.coffee_cup;
   final String coffeeCup2 = VscodeIcons.file_type_coffeescript;
   final String coffeeBeans = GameIcons.coffee_beans;

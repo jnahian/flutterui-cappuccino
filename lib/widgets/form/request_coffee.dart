@@ -39,10 +39,10 @@ class RequestCoffeeState extends State<RequestCoffee> {
       child: BlocConsumer<OrderBloc, OrderState>(
         listener: (context, state) {
           if (state is OrderSuccess) {
-            SnackbarUtil.showSnackbar(context, 'Order placed successfully!');
+            SnackbarUtil(context).showSnackbar(message: 'Order placed successfully!');
             Navigator.pop(context);
           } else if (state is OrderError) {
-            SnackbarUtil.showSnackbar(context, 'Failed to place order: ${state.message}');
+            SnackbarUtil(context).showSnackbar(message: 'Failed to place order: ${state.message}', isSuccess: false);
           }
         },
         builder: (context, state) {
@@ -57,7 +57,7 @@ class RequestCoffeeState extends State<RequestCoffee> {
                 ),
               ),
               const SizedBox(height: 10.0),
-              Container(
+              SizedBox(
                 width: screenWidth - 30.0,
                 child: TextFormField(
                   controller: _instruction,

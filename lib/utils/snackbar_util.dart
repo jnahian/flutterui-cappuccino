@@ -3,6 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wp_cafe/enums/color_palette.dart';
 
 class SnackbarUtil {
+  final BuildContext context;
+
+  SnackbarUtil(this.context);
   // static void showSnackbar(BuildContext context, String message, {bool isSuccess = true}) {
   //   // final snackBar = SnackBar(
   //   //   content: Text(message),
@@ -47,7 +50,7 @@ class SnackbarUtil {
   //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
   // }
 
-  static void showSnackbar(BuildContext context, String message, {bool isSuccess = true}) {
+  void showSnackbar({required String message, bool isSuccess = true}) {
     OverlayEntry overlayEntry = OverlayEntry(
       builder: (context) => Positioned(
         bottom: 30.0,

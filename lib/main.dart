@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
 import 'package:wp_cafe/bloc/auth_bloc.dart';
 import 'package:wp_cafe/bloc/order_bloc.dart';
 import 'package:wp_cafe/screens/dashboard_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/auth_event.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initLocalStorage();
   runApp(const MyApp());
 }
 
@@ -25,8 +28,9 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: const MaterialApp(
+        title: "WPCafe",
         debugShowCheckedModeBanner: false,
-        home: DashboardPage(),
+        home: DashboardScreen(),
       ),
     );
   }
