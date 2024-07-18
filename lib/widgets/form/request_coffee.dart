@@ -123,8 +123,12 @@ class RequestCoffeeState extends State<RequestCoffee> {
                   ),
                   child: Center(
                     child: state is OrderLoading
-                        ? const CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                        ? const SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                            ),
                           )
                         : Text(
                             'Request Coffee',

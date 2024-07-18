@@ -17,7 +17,7 @@ import 'package:wp_cafe/bloc/menu_state.dart';
 import 'package:wp_cafe/enums/color_palette.dart';
 import 'package:wp_cafe/enums/icon_palette.dart';
 import 'package:wp_cafe/models/statistic.dart';
-import 'package:wp_cafe/screens/item_details.dart';
+import 'package:wp_cafe/screens/request_coffee_screen.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -182,7 +182,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         ],
                       ),
                     ),
-                    
+
                     Container(
                       padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
                       width: MediaQuery.of(context).size.width,
@@ -238,6 +238,7 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
     );
   }
+
   Widget _buildCoffeeItem(cItem) {
     return GestureDetector(
       onTap: () {

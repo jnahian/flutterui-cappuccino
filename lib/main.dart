@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wp_cafe/bloc/auth_bloc.dart';
 import 'package:wp_cafe/bloc/order_bloc.dart';
-import 'package:wp_cafe/dashboard_page.dart';
+import 'package:wp_cafe/screens/dashboard_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/auth_event.dart';
 
