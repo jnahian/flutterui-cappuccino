@@ -6,50 +6,7 @@ class SnackbarUtil {
   final BuildContext context;
 
   SnackbarUtil(this.context);
-  // static void showSnackbar(BuildContext context, String message, {bool isSuccess = true}) {
-  //   // final snackBar = SnackBar(
-  //   //   content: Text(message),
-  //   //   duration: const Duration(seconds: 300),
-  //   //   showCloseIcon: true,
-  //   //   elevation: 0,
-  //   // );
-
-  //   final snackBar = SnackBar(
-  //     content: Row(
-  //       children: [
-  //         Icon(
-  //           isSuccess ? Icons.check_circle : Icons.error,
-  //           color: Colors.white,
-  //         ),
-  //         const SizedBox(width: 10),
-  //         Expanded(
-  //           child: Text(
-  //             message,
-  //             style: const TextStyle(color: Colors.white),
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //     backgroundColor: isSuccess ? Colors.green : Colors.red,
-  //     behavior: SnackBarBehavior.floating,
-  //     shape: RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.circular(15.0),
-  //     ),
-  //     margin: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 30.0),
-  //     duration: const Duration(seconds: 3),
-  //     showCloseIcon: true,
-  //     animation: CurvedAnimation(
-  //       parent: AnimationController(
-  //         vsync: ScaffoldMessenger.of(context),
-  //         duration: const Duration(milliseconds: 300),
-  //       )..forward(),
-  //       curve: Curves.easeInOut,
-  //     ),
-  //   );
-
-  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  // }
-
+  
   void showSnackbar({required String message, bool isSuccess = true}) {
     OverlayEntry overlayEntry = OverlayEntry(
       builder: (context) => Positioned(
@@ -65,7 +22,7 @@ class SnackbarUtil {
 
     Overlay.of(context)?.insert(overlayEntry);
 
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 3), () {
       overlayEntry.remove();
     });
   }
@@ -112,28 +69,32 @@ class SlideInSnackBarState extends State<SlideInSnackBar> with SingleTickerProvi
   Widget build(BuildContext context) {
     return SlideTransition(
       position: _slideAnimation,
-      child: Material(
-        color: ColorPalette().coffeeUnselected,
-        borderRadius: BorderRadius.circular(15),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-          child: Row(
-            children: [
-              Icon(
-                widget.isSuccess ? Icons.check_circle : Icons.error,
-                color: widget.isSuccess ? Colors.green : Colors.red,
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  widget.message,
-                  style: GoogleFonts.sourceSans3(
-                    color: widget.isSuccess ? Colors.green : Colors.red,
-                    fontWeight: FontWeight.bold,
+      child: Padding(
+        padding: EdgeInsets.only(bottom: 30),
+        child: Material(
+          elevation: 4.0,
+          color: ColorPalette().coffeeUnselected,
+          borderRadius: BorderRadius.circular(15),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+            child: Row(
+              children: [
+                Icon(
+                  widget.isSuccess ? Icons.check_circle : Icons.error,
+                  color: widget.isSuccess ? Colors.green : Colors.red,
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    widget.message,
+                    style: GoogleFonts.sourceSans3(
+                      color: widget.isSuccess ? Colors.green : Colors.red,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

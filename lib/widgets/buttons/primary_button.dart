@@ -21,12 +21,14 @@ class PrimaryButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: isLoading ? null : onPressed,
       style: ElevatedButton.styleFrom(
+        elevation: 4.0,
         backgroundColor: ColorPalette().coffeeSelected,
+        disabledBackgroundColor: ColorPalette().coffeeUnselected,
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
+          borderRadius: BorderRadius.circular(12.0),
         ),
-        fixedSize: Size(width - 30, 50),
+        fixedSize: Size(width - 30, 48),
       ),
       child: isLoading
           ? const SizedBox(
