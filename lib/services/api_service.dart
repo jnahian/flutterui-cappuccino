@@ -28,7 +28,11 @@ class ApiService {
   Future<Map<String, dynamic>> getUserData() async {
     final response = await http.get(
       Uri.parse('$baseUrl/user'),
-      headers: {"Content-Type": accept, 'Authorization': 'Bearer $_token'},
+      headers: {
+        'Accept': accept,
+        "Content-Type": accept,
+        'Authorization': 'Bearer $_token',
+      },
     );
 
     if (response.statusCode == 200) {
@@ -41,11 +45,12 @@ class ApiService {
   Future<dynamic> getRequest(String endpoint) async {
     final response = await http.get(
       Uri.parse('$baseUrl$endpoint'),
-      headers: {"Content-Type": accept, 'Authorization': 'Bearer $_token', 'Accept': accept},
+      headers: {
+        'Accept': accept,
+        "Content-Type": accept,
+        'Authorization': 'Bearer $_token',
+      },
     );
-
-    print(_token);
-    print(json.decode(response.body));
 
     if (response.statusCode == 200) {
       return json.decode(response.body);
@@ -57,7 +62,11 @@ class ApiService {
   Future<dynamic> postRequest(String endpoint, Map<String, dynamic> data) async {
     final response = await http.post(
       Uri.parse('$baseUrl$endpoint'),
-      headers: {'Authorization': 'Bearer $_token', 'Content-Type': accept},
+      headers: {
+        'Accept': accept,
+        "Content-Type": accept,
+        'Authorization': 'Bearer $_token',
+      },
       body: json.encode(data),
     );
 

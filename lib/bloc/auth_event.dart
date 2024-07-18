@@ -23,3 +23,10 @@ class FetchUserData extends AuthEvent {
   @override
   List<Object> get props => [];
 }
+
+class FetchUserCoupon extends AuthEvent {
+  const FetchUserCoupon();
+
+  @override
+  List<Object> get props => [];
+}

@@ -37,3 +37,12 @@ class UserDataLoaded extends AuthState {
   @override
   List<Object> get props => [userData];
 }
+
+class UserCouponLoaded extends AuthState {
+  final Map<String, dynamic> userCoupon;
+
+  const UserCouponLoaded(this.userCoupon);
+
+  @override
+  List<Object> get props => [userCoupon];
+}

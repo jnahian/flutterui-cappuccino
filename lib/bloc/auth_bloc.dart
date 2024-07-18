@@ -10,6 +10,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthInitial()) {
     on<AuthenticateUser>(_onAuthenticateUser);
     on<FetchUserData>(_onFetchUserData);
+    on<FetchUserCoupon>(_onFetchUserCoupon);
   }
 
   Future<void> _onAuthenticateUser(AuthenticateUser event, Emitter<AuthState> emit) async {
@@ -31,6 +32,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(UserDataLoaded(userData));
     } catch (e) {
       emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> _onFetchUserCoupon(FetchUserCoupon event, Emitter<AuthState> emit) async {
+    try {
+      final body = await apiService.getRequest('/coupons');
+      emit(UserCouponLoaded(body['data']));
+    } catch (e) {
+      print(e);
+      // emit(AuthError(e.toString()));
     }
   }
 }

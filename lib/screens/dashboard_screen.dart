@@ -5,12 +5,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ci.dart';
 import 'package:iconify_flutter/icons/heroicons.dart';
-import 'package:iconify_flutter/icons/iconoir.dart';
-import 'package:iconify_flutter/icons/ph.dart';
-import 'package:iconify_flutter/icons/ri.dart';
 import 'package:iconify_flutter/icons/ic.dart';
+import 'package:iconify_flutter/icons/iconoir.dart';
+import 'package:iconify_flutter/icons/ri.dart';
 import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 import 'package:wp_cafe/bloc/auth_bloc.dart';
+import 'package:wp_cafe/bloc/auth_event.dart';
 import 'package:wp_cafe/bloc/auth_state.dart';
 import 'package:wp_cafe/bloc/menu_bloc.dart';
 import 'package:wp_cafe/bloc/menu_event.dart';
@@ -20,6 +20,7 @@ import 'package:wp_cafe/enums/icon_palette.dart';
 import 'package:wp_cafe/models/statistic.dart';
 import 'package:wp_cafe/screens/login_screen.dart';
 import 'package:wp_cafe/screens/request_coffee_screen.dart';
+import 'package:wp_cafe/widgets/say_greeting.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -31,174 +32,182 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   dynamic coffeeItems;
 
-  final List<Statistic> statistics = [
-    Statistic(count: "35", label: "Available Coffee", icon: IconPalette().coffeeBeans),
-    Statistic(count: "380", label: "Consumed Coffee", icon: IconPalette().coffeeCup),
-  ];
-
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) {
-        return MenuBloc()..add(FetchMenus());
-      },
-      child: Scaffold(
-        backgroundColor: ColorPalette().scaffoldBg,
-        bottomNavigationBar: _buildBottomBar(),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // TopBar
-            Container(
-              padding: const EdgeInsets.fromLTRB(15.0, 50.0, 15.0, 5.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      // todo
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(7.0),
+    return Scaffold(
+      backgroundColor: ColorPalette().scaffoldBg,
+      bottomNavigationBar: _buildBottomBar(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // TopBar
+          Container(
+            padding: const EdgeInsets.fromLTRB(15.0, 50.0, 15.0, 5.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    // todo
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(7.0),
+                    height: 42.0,
+                    width: 42.0,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF1F242C),
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    child: const Iconify(Heroicons.bars_3_center_left_20_solid, size: 12.0, color: Color(0xFF4D4F52)),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    // todo
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(2.0),
+                    height: 36.0,
+                    width: 150.0,
+                    child: SvgPicture.asset(
+                      'assets/images/logo.svg',
+                      semanticsLabel: 'WPCafe Logo',
                       height: 42.0,
-                      width: 42.0,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF1F242C),
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      child: const Iconify(Heroicons.bars_3_center_left_20_solid, size: 12.0, color: Color(0xFF4D4F52)),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      // todo
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(2.0),
-                      height: 36.0,
-                      width: 150.0,
-                      child: SvgPicture.asset(
-                        'assets/images/logo.svg',
-                        semanticsLabel: 'WPCafe Logo',
-                        height: 42.0,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      // todo
-                    },
-                    child: BlocBuilder<AuthBloc, AuthState>(
-                      builder: (context, state) {
-                        if (state is UserDataLoaded) {
-                          return Container(
-                            padding: const EdgeInsets.all(4.0),
-                            height: 42.0,
-                            width: 42.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12.0),
-                              color: ColorPalette().coffeeUnselected,
-                            ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: NetworkImage(state.userData['avatar']!),
-                                  fit: BoxFit.cover,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                            ),
-                          );
-                        }
-
+                ),
+                GestureDetector(
+                  onTap: () {
+                    // todo
+                  },
+                  child: BlocBuilder<AuthBloc, AuthState>(
+                    builder: (context, state) {
+                      if (state is UserDataLoaded) {
                         return Container(
-                          padding: const EdgeInsets.all(7.0),
+                          padding: const EdgeInsets.all(4.0),
                           height: 42.0,
                           width: 42.0,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12.0),
                             color: ColorPalette().coffeeUnselected,
                           ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage(state.userData['avatar']!),
+                                fit: BoxFit.cover,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                        );
+                      }
+
+                      return Container(
+                        padding: const EdgeInsets.all(7.0),
+                        height: 42.0,
+                        width: 42.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          color: ColorPalette().coffeeUnselected,
+                        ),
+                      );
+                    },
+                  ),
+                )
+              ],
+            ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  // Welcome Section
+                  Container(
+                    padding: const EdgeInsets.only(left: 15.0, top: 15.0, right: 15.0),
+                    width: MediaQuery.of(context).size.width,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const SayGreeting(),
+                        Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          children: [
+                            const Iconify(
+                              Ci.dot_04_l,
+                              color: Colors.green,
+                            ),
+                            Text('Barista is Online',
+                                style: GoogleFonts.sourceSans3(
+                                    fontWeight: FontWeight.bold, color: Colors.white, fontSize: 14.0)),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  // User info
+                  Container(
+                    padding: const EdgeInsets.only(left: 15.0, top: 5.0),
+                    width: MediaQuery.of(context).size.width,
+                    child: BlocBuilder<AuthBloc, AuthState>(
+                      builder: (context, state) {
+                        return Text(
+                          state is UserDataLoaded ? state.userData['name'] : "",
+                          style:
+                              GoogleFonts.sourceSans3(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 32.0),
                         );
                       },
                     ),
-                  )
-                ],
-              ),
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    // Welcome Section
-                    Container(
-                      padding: const EdgeInsets.only(left: 15.0, top: 15.0, right: 15.0),
-                      width: MediaQuery.of(context).size.width,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Good Afternoon',
-                            style: GoogleFonts.sourceSans3(
-                                fontWeight: FontWeight.bold, color: ColorPalette().coffeeSelected, fontSize: 17.0),
+                  ),
+                  // User coupons
+                  BlocProvider(
+                    create: (context) => AuthBloc()..add(const FetchUserCoupon()),
+                    child: BlocBuilder<AuthBloc, AuthState>(
+                      builder: (context, state) {
+                        final List<Statistic> statistics = [
+                          Statistic(
+                            count: (state is UserCouponLoaded ? state.userCoupon['available'] : 0).toString(),
+                            label: "Available Coffee",
+                            icon: IconPalette().coffeeBeans,
                           ),
-                          Wrap(
-                            crossAxisAlignment: WrapCrossAlignment.center,
+                          Statistic(
+                            count: (state is UserCouponLoaded ? state.userCoupon['consumed'] : 0).toString(),
+                            label: "Consumed Coffee",
+                            icon: IconPalette().coffeeCup,
+                          ),
+                        ];
+                        return Container(
+                          padding: const EdgeInsets.all(15.0),
+                          width: MediaQuery.of(context).size.width,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Iconify(
-                                Ci.dot_04_l,
-                                color: Colors.green,
-                              ),
-                              Text('Barista is Online',
-                                  style: GoogleFonts.sourceSans3(
-                                      fontWeight: FontWeight.bold, color: Colors.white, fontSize: 14.0)),
+                              ...statistics.map((item) {
+                                return _buildStatisticItem(item);
+                              }).toList()
                             ],
                           ),
-                        ],
-                      ),
+                        );
+                      },
                     ),
-                    // User info
-                    Container(
-                      padding: const EdgeInsets.only(left: 15.0, top: 5.0),
-                      width: MediaQuery.of(context).size.width,
-                      child: BlocBuilder<AuthBloc, AuthState>(
-                        builder: (context, state) {
-                          return Text(
-                            state is UserDataLoaded ? state.userData['name'] : "",
-                            style: GoogleFonts.sourceSans3(
-                                fontWeight: FontWeight.bold, color: Colors.white, fontSize: 32.0),
-                          );
-                        },
-                      ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
+                    width: MediaQuery.of(context).size.width,
+                    child: Text(
+                      'Enjoy a coffee :)',
+                      style: GoogleFonts.sourceSans3(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18.0),
                     ),
-                    // User Limits
-                    Container(
-                      padding: const EdgeInsets.all(15.0),
-                      width: MediaQuery.of(context).size.width,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ...statistics.map((item) {
-                            return _buildStatisticItem(item);
-                          }).toList()
-                        ],
-                      ),
-                    ),
-
-                    Container(
-                      padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
-                      width: MediaQuery.of(context).size.width,
-                      child: Text(
-                        'Enjoy a coffee :)',
-                        style:
-                            GoogleFonts.sourceSans3(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18.0),
-                      ),
-                    ),
-                    // const SizedBox(height: 10.0),
-                    BlocBuilder<MenuBloc, MenuState>(
+                  ),
+                  // const SizedBox(height: 10.0),
+                  BlocProvider(
+                    create: (context) => MenuBloc()..add(FetchMenus()),
+                    child: BlocBuilder<MenuBloc, MenuState>(
                       builder: (context, state) {
                         if (state is MenuLoading) {
-                          return Center(
+                          return Container(
+                            height: 300,
+                            alignment: Alignment.center,
                             child: CircularProgressIndicator(
                               color: ColorPalette().coffeeSelected,
                             ),
@@ -235,12 +244,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         return const Center(child: Text('Press the button to fetch posts'));
                       },
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -388,7 +397,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget _buildBottomBar() {
     return Container(
       padding: const EdgeInsets.only(left: 25.0, right: 25.0, bottom: 25.0),
-      height: 80.0,
+      height: 60.0,
       decoration: const BoxDecoration(color: Color(0xFF1A1819)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -413,23 +422,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
             Ri.heart_2_fill,
             color: Color(0xFF4E4F53),
           ),
-          Container(
-            child: Stack(
-              children: [
-                const Iconify(
-                  Heroicons.bell,
-                  color: Color(0xFF4E4F53),
-                ),
-                Positioned(
-                    top: 2.0,
-                    left: 15.0,
-                    child: Container(
-                      height: 7.0,
-                      width: 7.0,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(3.5), color: Colors.red),
-                    ))
-              ],
-            ),
+          Stack(
+            children: [
+              const Iconify(
+                Heroicons.bell,
+                color: Color(0xFF4E4F53),
+              ),
+              Positioned(
+                  top: 2.0,
+                  left: 15.0,
+                  child: Container(
+                    height: 7.0,
+                    width: 7.0,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(3.5), color: Colors.red),
+                  ))
+            ],
           )
         ],
       ),
