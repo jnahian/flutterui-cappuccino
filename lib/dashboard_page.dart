@@ -1,5 +1,14 @@
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/material.dart' hide SearchBar;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:iconify_flutter/iconify_flutter.dart';
+import 'package:iconify_flutter/icons/ci.dart';
+import 'package:iconify_flutter/icons/heroicons.dart';
+import 'package:iconify_flutter/icons/iconoir.dart';
+import 'package:iconify_flutter/icons/ph.dart';
+import 'package:iconify_flutter/icons/ri.dart';
+import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 import 'package:wp_cafe/bloc/auth_bloc.dart';
 import 'package:wp_cafe/bloc/auth_state.dart';
 import 'package:wp_cafe/bloc/menu_bloc.dart';
@@ -9,15 +18,6 @@ import 'package:wp_cafe/enums/color_palette.dart';
 import 'package:wp_cafe/enums/icon_palette.dart';
 import 'package:wp_cafe/models/statistic.dart';
 import 'package:wp_cafe/screens/item_details.dart';
-import 'package:flutter/material.dart' hide SearchBar;
-import 'package:google_fonts/google_fonts.dart';
-import 'package:iconify_flutter/iconify_flutter.dart';
-import 'package:iconify_flutter/icons/heroicons.dart';
-import 'package:iconify_flutter/icons/iconoir.dart';
-import 'package:iconify_flutter/icons/ph.dart';
-import 'package:iconify_flutter/icons/ri.dart';
-import 'package:iconify_flutter/icons/ci.dart';
-import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -29,7 +29,7 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   dynamic coffeeItems;
 
-  final List<Statistic> statisics = [
+  final List<Statistic> statistics = [
     Statistic(count: "35", label: "Available Coffee", icon: IconPalette().coffeeBeans),
     Statistic(count: "380", label: "Consumed Coffee", icon: IconPalette().coffeeCup),
   ];
@@ -54,7 +54,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      //todo
+                      // todo
                     },
                     child: Container(
                       padding: const EdgeInsets.all(7.0),
@@ -69,7 +69,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      //todo
+                      // todo
                     },
                     child: Container(
                       padding: const EdgeInsets.all(2.0),
@@ -84,7 +84,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      //todo
+                      // todo
                     },
                     child: BlocBuilder<AuthBloc, AuthState>(
                       builder: (context, state) {
@@ -124,108 +124,113 @@ class _DashboardPageState extends State<DashboardPage> {
                 ],
               ),
             ),
-            // Welcome Section
-            Container(
-              padding: const EdgeInsets.only(left: 15.0, top: 15.0, right: 15.0),
-              width: MediaQuery.of(context).size.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Good Afternoon',
-                    style: GoogleFonts.sourceSans3(
-                        fontWeight: FontWeight.bold, color: ColorPalette().coffeeSelected, fontSize: 17.0),
-                  ),
-                  Wrap(
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
-                      const Iconify(
-                        Ci.dot_04_l,
-                        color: Colors.green,
-                      ),
-                      Text('Barista is Online',
-                          style: GoogleFonts.sourceSans3(
-                              fontWeight: FontWeight.bold, color: Colors.white, fontSize: 14.0)),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            // User info
-            Container(
-              padding: const EdgeInsets.only(left: 15.0, top: 5.0),
-              width: MediaQuery.of(context).size.width,
-              child: BlocBuilder<AuthBloc, AuthState>(
-                builder: (context, state) {
-                  return Text(
-                    state is UserDataLoaded ? state.userData['name'] : "",
-                    style: GoogleFonts.sourceSans3(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 32.0),
-                  );
-                },
-              ),
-            ),
-            // User Limits
-            Container(
-              padding: const EdgeInsets.all(15.0),
-              width: MediaQuery.of(context).size.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ...statisics.map((item) {
-                    return _buildStatisticItem(item);
-                  }).toList()
-                ],
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
-              width: MediaQuery.of(context).size.width,
-              child: Text(
-                'Enjoy a coffee :)',
-                style: GoogleFonts.sourceSans3(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18.0),
-              ),
-            ),
-            // const SizedBox(height: 10.0),
             Expanded(
-              child: BlocBuilder<MenuBloc, MenuState>(
-                builder: (context, state) {
-                  if (state is MenuLoading) {
-                    return Center(
-                      child: CircularProgressIndicator(
-                        color: ColorPalette().coffeeSelected,
-                      ),
-                    );
-                  } else if (state is MenuLoaded) {
-                    return SingleChildScrollView(
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: Container(
-                          color: const Color(0xFF0D0F14),
-                          height: MediaQuery.of(context).size.height,
-                          width: MediaQuery.of(context).size.width - 30.0,
-                          padding: const EdgeInsets.only(left: 15, right: 15),
-                          child: GridView.count(
-                            padding: EdgeInsets.zero,
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            crossAxisSpacing: 15,
-                            mainAxisSpacing: 15,
-                            crossAxisCount: 2,
-                            childAspectRatio: 0.72,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    // Welcome Section
+                    Container(
+                      padding: const EdgeInsets.only(left: 15.0, top: 15.0, right: 15.0),
+                      width: MediaQuery.of(context).size.width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Good Afternoon',
+                            style: GoogleFonts.sourceSans3(
+                                fontWeight: FontWeight.bold, color: ColorPalette().coffeeSelected, fontSize: 17.0),
+                          ),
+                          Wrap(
+                            crossAxisAlignment: WrapCrossAlignment.center,
                             children: [
-                              ...state.menus.map((e) {
-                                return _buildCoffeeItem(e);
-                              }).toList()
+                              const Iconify(
+                                Ci.dot_04_l,
+                                color: Colors.green,
+                              ),
+                              Text('Barista is Online',
+                                  style: GoogleFonts.sourceSans3(
+                                      fontWeight: FontWeight.bold, color: Colors.white, fontSize: 14.0)),
                             ],
                           ),
-                        ),
+                        ],
                       ),
-                    );
-                  } else if (state is MenuError) {
-                    return Center(child: Text('Error: ${state.message}'));
-                  }
-                  return const Center(child: Text('Press the button to fetch posts'));
-                },
+                    ),
+                    // User info
+                    Container(
+                      padding: const EdgeInsets.only(left: 15.0, top: 5.0),
+                      width: MediaQuery.of(context).size.width,
+                      child: BlocBuilder<AuthBloc, AuthState>(
+                        builder: (context, state) {
+                          return Text(
+                            state is UserDataLoaded ? state.userData['name'] : "",
+                            style: GoogleFonts.sourceSans3(
+                                fontWeight: FontWeight.bold, color: Colors.white, fontSize: 32.0),
+                          );
+                        },
+                      ),
+                    ),
+                    // User Limits
+                    Container(
+                      padding: const EdgeInsets.all(15.0),
+                      width: MediaQuery.of(context).size.width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ...statistics.map((item) {
+                            return _buildStatisticItem(item);
+                          }).toList()
+                        ],
+                      ),
+                    ),
+                    
+                    Container(
+                      padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
+                      width: MediaQuery.of(context).size.width,
+                      child: Text(
+                        'Enjoy a coffee :)',
+                        style:
+                            GoogleFonts.sourceSans3(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18.0),
+                      ),
+                    ),
+                    // const SizedBox(height: 10.0),
+                    BlocBuilder<MenuBloc, MenuState>(
+                      builder: (context, state) {
+                        if (state is MenuLoading) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              color: ColorPalette().coffeeSelected,
+                            ),
+                          );
+                        } else if (state is MenuLoaded) {
+                          return SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            child: Container(
+                              color: const Color(0xFF0D0F14),
+                              padding: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
+                              child: GridView.count(
+                                padding: EdgeInsets.zero,
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                crossAxisSpacing: 15,
+                                mainAxisSpacing: 15,
+                                crossAxisCount: 2,
+                                childAspectRatio: 0.72,
+                                children: [
+                                  ...state.menus.map((e) {
+                                    return _buildCoffeeItem(e);
+                                  }).toList()
+                                ],
+                              ),
+                            ),
+                          );
+                        } else if (state is MenuError) {
+                          return Center(child: Text('Error: ${state.message}'));
+                        }
+                        return const Center(child: Text('Press the button to fetch posts'));
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -233,7 +238,6 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
     );
   }
-
   Widget _buildCoffeeItem(cItem) {
     return GestureDetector(
       onTap: () {
