@@ -11,6 +11,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthenticateUser>(_onAuthenticateUser);
     on<FetchUserData>(_onFetchUserData);
     on<FetchUserCoupon>(_onFetchUserCoupon);
+    on<PostPasswordForgot>(_onPostPasswordForgot);
   }
 
   Future<void> _onAuthenticateUser(AuthenticateUser event, Emitter<AuthState> emit) async {
@@ -20,6 +21,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       localStorage.setItem('token', response['data']['token']);
       emit(Authenticated(response['data']['token']));
       emit(UserDataLoaded(response['data']['user']));
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> _onPostPasswordForgot(PostPasswordForgot event, Emitter<AuthState> emit) async {
+    emit(AuthLoading());
+    try {
+      final userData = await apiService.postRequest('/forgot-password', {'email': event.email});
+      emit(UserDataLoaded(userData));
     } catch (e) {
       emit(AuthError(e.toString()));
     }

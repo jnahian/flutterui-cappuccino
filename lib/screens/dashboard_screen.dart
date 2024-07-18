@@ -5,10 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ci.dart';
 import 'package:iconify_flutter/icons/heroicons.dart';
-import 'package:iconify_flutter/icons/ic.dart';
-import 'package:iconify_flutter/icons/iconoir.dart';
-import 'package:iconify_flutter/icons/ri.dart';
-import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 import 'package:wp_cafe/bloc/auth_bloc.dart';
 import 'package:wp_cafe/bloc/auth_event.dart';
 import 'package:wp_cafe/bloc/auth_state.dart';
@@ -18,8 +14,8 @@ import 'package:wp_cafe/bloc/menu_state.dart';
 import 'package:wp_cafe/enums/color_palette.dart';
 import 'package:wp_cafe/enums/icon_palette.dart';
 import 'package:wp_cafe/models/statistic.dart';
-import 'package:wp_cafe/screens/login_screen.dart';
-import 'package:wp_cafe/screens/request_coffee_screen.dart';
+import 'package:wp_cafe/widgets/bottom_navigation.dart';
+import 'package:wp_cafe/widgets/form/request_coffee.dart';
 import 'package:wp_cafe/widgets/say_greeting.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -36,7 +32,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorPalette().scaffoldBg,
-      bottomNavigationBar: _buildBottomBar(),
+      bottomNavigationBar: const BottomNavigation(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -228,7 +224,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 childAspectRatio: 0.72,
                                 children: [
                                   ...state.menus.map((e) {
-                                    return _buildCoffeeItem(e);
+                                    return RequestCoffee(cItem: e);
                                   }).toList()
                                 ],
                               ),
@@ -250,107 +246,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildCoffeeItem(cItem) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => RequestCoffeeScreen(cItem: cItem)));
-      },
-      child: Container(
-        height: 220.0,
-        // width: 150.0,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15.0),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: <Color>[
-              ColorPalette().gradientTopLeft,
-              ColorPalette().gradientBottonRight,
-            ],
-          ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 165.0,
-              width: 150.0,
-              child: Stack(
-                children: [
-                  Positioned(
-                    top: 15.0,
-                    left: 0.0,
-                    child: Container(
-                      height: 150.0,
-                      width: 150.0,
-                      decoration: BoxDecoration(
-                        color: Colors.black12,
-                        image: DecorationImage(
-                          image: NetworkImage(cItem['thumbnail']!),
-                          fit: BoxFit.cover,
-                        ),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 15.0,
-                    right: 0,
-                    child: Container(
-                      height: 25.0,
-                      width: 50.0,
-                      decoration: BoxDecoration(
-                          color: const Color(0xFF342520).withOpacity(0.7),
-                          borderRadius: const BorderRadius.only(
-                              topRight: Radius.circular(10.0), bottomLeft: Radius.circular(10.0))),
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Iconify(
-                              Iconoir.coffee_cup,
-                              color: ColorPalette().coffeeSelected,
-                              size: 15.0,
-                            ),
-                            Text(
-                              cItem['availableCoupon'].toString(),
-                              style: GoogleFonts.sourceSans3(
-                                  fontWeight: FontWeight.bold, color: Colors.white, fontSize: 13.0),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0, bottom: 5.0),
-              child: Center(
-                child: Text(
-                  cItem['name']!,
-                  style: GoogleFonts.sourceSans3(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 5.0),
-              child: Center(
-                child: Text(
-                  cItem['ingredients'].map((item) {
-                    return toBeginningOfSentenceCase(item.toString());
-                  }).join(', '),
-                  style: GoogleFonts.sourceSans3(color: Colors.white, fontSize: 14.0),
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
@@ -392,54 +287,5 @@ class _DashboardScreenState extends State<DashboardScreen> {
             Text(sItem.label!, style: GoogleFonts.sourceSans3(color: const Color(0xFFCECECE), fontSize: 16.0)),
           ],
         ));
-  }
-
-  Widget _buildBottomBar() {
-    return Container(
-      padding: const EdgeInsets.only(left: 25.0, right: 25.0, bottom: 25.0),
-      height: 60.0,
-      decoration: const BoxDecoration(color: Color(0xFF1A1819)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          GestureDetector(
-            onTap: () {},
-            child: Iconify(
-              IconPalette().home,
-              color: Color(0xFFD17742),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginScreen()));
-            },
-            child: const Iconify(
-              Ic.round_login,
-              color: Color(0xFF4E4F53),
-            ),
-          ),
-          const Iconify(
-            Ri.heart_2_fill,
-            color: Color(0xFF4E4F53),
-          ),
-          Stack(
-            children: [
-              const Iconify(
-                Heroicons.bell,
-                color: Color(0xFF4E4F53),
-              ),
-              Positioned(
-                  top: 2.0,
-                  left: 15.0,
-                  child: Container(
-                    height: 7.0,
-                    width: 7.0,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(3.5), color: Colors.red),
-                  ))
-            ],
-          )
-        ],
-      ),
-    );
   }
 }

@@ -20,6 +20,15 @@ class Authenticated extends AuthState {
   List<Object> get props => [token];
 }
 
+class ForgotPassword extends AuthState {
+  final String email;
+
+  const ForgotPassword(this.email);
+
+  @override
+  List<Object> get props => [email];
+}
+
 class AuthError extends AuthState {
   final String message;
 

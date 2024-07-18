@@ -17,6 +17,15 @@ class AuthenticateUser extends AuthEvent {
   List<Object> get props => [email, password];
 }
 
+class PostPasswordForgot extends AuthEvent {
+  final String email;
+
+  const PostPasswordForgot(this.email);
+
+  @override
+  List<Object> get props => [email];
+}
+
 class FetchUserData extends AuthEvent {
   const FetchUserData();
 
