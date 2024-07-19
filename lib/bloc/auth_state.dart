@@ -55,3 +55,12 @@ class UserCouponLoaded extends AuthState {
   @override
   List<Object> get props => [userCoupon];
 }
+
+class BaristaStatusLoaded extends AuthState {
+  final bool baristaStatus;
+
+  const BaristaStatusLoaded(this.baristaStatus);
+
+  @override
+  List<Object> get props => [baristaStatus];
+}

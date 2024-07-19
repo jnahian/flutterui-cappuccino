@@ -13,7 +13,7 @@ class StatusBadge extends StatefulWidget {
 }
 
 class _StatusBadgeState extends State<StatusBadge> {
-  final _bgColor = ColorPalette().gray;
+  final _bgColor = ColorPalette.gray;
 
   // if(this.type == '')
 
@@ -23,7 +23,7 @@ class _StatusBadgeState extends State<StatusBadge> {
       label: Text(widget.label),
       backgroundColor: _bgColor,
       textStyle: GoogleFonts.sourceSans3(
-        color: ColorPalette().textColor,
+        color: ColorPalette.textColor,
         fontSize: 12.0,
         fontWeight: FontWeight.w600,
       ),

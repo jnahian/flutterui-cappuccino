@@ -22,7 +22,7 @@ class _SearchBarState extends State<SearchBar> {
         width: MediaQuery.of(context).size.width - 30.0,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
-            color: ColorPalette().searchBarFill),
+            color: ColorPalette.searchBarFill),
         child: TextField(
           decoration: InputDecoration(
               filled: true,
@@ -31,7 +31,7 @@ class _SearchBarState extends State<SearchBar> {
               hintStyle:
                   GoogleFonts.sourceSans3(color: const Color(0xFF525559)),
               border: InputBorder.none,
-              fillColor: ColorPalette().searchBarFill,
+              fillColor: ColorPalette.searchBarFill,
               prefixIcon: const Padding(
                 padding: EdgeInsets.only(right: 8.0, left: 8.0),
                 child: Iconify(

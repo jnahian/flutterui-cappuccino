@@ -17,7 +17,7 @@ class RequestedItem extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         margin: const EdgeInsets.fromLTRB(15, 0, 15, 10),
         decoration: BoxDecoration(
-          color: ColorPalette().coffeeSelected,
+          color: ColorPalette.coffeeSelected,
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Row(
@@ -32,8 +32,8 @@ class RequestedItem extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: <Color>[
-                    ColorPalette().gradientTopLeft,
-                    ColorPalette().gradientBottonRight,
+                    ColorPalette.gradientTopLeft,
+                    ColorPalette.gradientBottonRight,
                   ],
                 ),
               ),
@@ -54,7 +54,7 @@ class RequestedItem extends StatelessWidget {
                   // Text(
                   //   'Mocha',
                   //   style: GoogleFonts.sourceSans3(
-                  //     color: ColorPalette().textColor,
+                  //     color: ColorPalette.textColor,
                   //     fontSize: 14.0,
                   //     fontWeight: FontWeight.w600,
                   //   ),
@@ -82,16 +82,16 @@ class RequestedItem extends StatelessWidget {
                                 Text(
                                   "Cappuccino",
                                   style: GoogleFonts.sourceSans3(
-                                    color: ColorPalette().textColor,
+                                    color: ColorPalette.textColor,
                                     fontSize: 17.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                                 Badge(
                                   label: const Text('Pending'),
-                                  backgroundColor: ColorPalette().gray,
+                                  backgroundColor: ColorPalette.gray,
                                   textStyle: GoogleFonts.sourceSans3(
-                                    color: ColorPalette().textColor,
+                                    color: ColorPalette.textColor,
                                     fontSize: 12.0,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -102,7 +102,7 @@ class RequestedItem extends StatelessWidget {
                           Text(
                             'Serial Number: #4',
                             style: GoogleFonts.sourceSans3(
-                              color: ColorPalette().textColor,
+                              color: ColorPalette.textColor,
                               fontSize: 14.0,
                               fontWeight: FontWeight.bold,
                             ),
@@ -110,7 +110,7 @@ class RequestedItem extends StatelessWidget {
                           // Text(
                           //   '" 3 spoon sugar',
                           //   style: GoogleFonts.sourceSans3(
-                          //     color: ColorPalette().textColor,
+                          //     color: ColorPalette.textColor,
                           //     fontSize: 14.0,
                           //     fontWeight: FontWeight.w500,
                           //   ),
@@ -125,7 +125,7 @@ class RequestedItem extends StatelessWidget {
                       Text(
                         '25 Sec Ago | 05:30 PM',
                         style: GoogleFonts.sourceSans3(
-                          color: ColorPalette().textColor,
+                          color: ColorPalette.textColor,
                           fontSize: 12.0,
                         ),
                       ),

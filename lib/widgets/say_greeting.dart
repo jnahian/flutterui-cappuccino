@@ -45,7 +45,7 @@ class _SayGreetingState extends State<SayGreeting> {
   Widget build(BuildContext context) {
     return Text(
       greeting,
-      style: GoogleFonts.sourceSans3(fontWeight: FontWeight.bold, color: ColorPalette().coffeeSelected, fontSize: 17.0),
+      style: GoogleFonts.sourceSans3(fontWeight: FontWeight.bold, color: ColorPalette.coffeeSelected, fontSize: 17.0),
     );
   }
 }

@@ -12,6 +12,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<FetchUserData>(_onFetchUserData);
     on<FetchUserCoupon>(_onFetchUserCoupon);
     on<PostPasswordForgot>(_onPostPasswordForgot);
+    on<FetchBaristaStatus>(_onFetchBaristaStatus);
   }
 
   Future<void> _onAuthenticateUser(AuthenticateUser event, Emitter<AuthState> emit) async {
@@ -51,6 +52,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final body = await apiService.getRequest('/coupons');
       emit(UserCouponLoaded(body['data']));
     } catch (e) {
+      print(e);
+      // emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> _onFetchBaristaStatus(FetchBaristaStatus event, Emitter<AuthState> emit) async {
+    try {
+      final body = await apiService.getRequest('/barista-stauts');
+      emit(BaristaStatusLoaded(body['data']['barista_status']));
+    } catch (e) {
+      // emit(BaristaStatusLoaded(false));
       print(e);
       // emit(AuthError(e.toString()));
     }

@@ -105,14 +105,14 @@ class _LoginFormState extends State<LoginForm> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        fillColor: ColorPalette().searchBarFill,
+                        fillColor: ColorPalette.searchBarFill,
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(color: ColorPalette().coffeeSelected),
+                          borderSide: BorderSide(color: ColorPalette.coffeeSelected),
                         ),
                         errorStyle: GoogleFonts.sourceSans3(fontSize: 14, fontWeight: FontWeight.bold),
                       ),
-                      style: GoogleFonts.sourceSans3(color: ColorPalette().textColor),
+                      style: GoogleFonts.sourceSans3(color: ColorPalette.textColor),
                     ),
                   ),
                   const SizedBox(height: 10.0),
@@ -138,14 +138,14 @@ class _LoginFormState extends State<LoginForm> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      fillColor: ColorPalette().searchBarFill,
+                      fillColor: ColorPalette.searchBarFill,
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(color: ColorPalette().coffeeSelected),
+                        borderSide: BorderSide(color: ColorPalette.coffeeSelected),
                       ),
                       errorStyle: GoogleFonts.sourceSans3(fontSize: 14, fontWeight: FontWeight.bold),
                     ),
-                    style: GoogleFonts.sourceSans3(color: ColorPalette().textColor),
+                    style: GoogleFonts.sourceSans3(color: ColorPalette.textColor),
                   ),
                   Container(
                     width: screenWidth - 30.0,
@@ -161,7 +161,7 @@ class _LoginFormState extends State<LoginForm> {
                               onChanged: (bool? value) {
                                 setState(() => _rememberMe = value!);
                               },
-                              activeColor: ColorPalette().coffeeSelected,
+                              activeColor: ColorPalette.coffeeSelected,
                             ),
                             GestureDetector(
                               onTap: () => setState(() => _rememberMe = !_rememberMe),
@@ -184,9 +184,9 @@ class _LoginFormState extends State<LoginForm> {
                             'Forgot Password?',
                             style: GoogleFonts.sourceSans3(
                               fontSize: 17.0,
-                              color: ColorPalette().coffeeSelected,
+                              color: ColorPalette.coffeeSelected,
                               decoration: TextDecoration.underline,
-                              decorationColor: ColorPalette().coffeeSelected,
+                              decorationColor: ColorPalette.coffeeSelected,
                             ),
                           ),
                         ),

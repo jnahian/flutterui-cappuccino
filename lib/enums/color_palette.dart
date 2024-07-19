@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 class ColorPalette {
-  final Color scaffoldBg = const Color(0xFF0D0F14);
-  final Color searchBarFill = const Color(0xFF141921);
-  final Color coffeeSelected = const Color(0xFFD17741);
-  final Color coffeeUnselected = const Color(0xFF525559);
-  final Color gradientTopLeft = const Color(0xFF262B34);
-  final Color gradientBottonRight = const Color(0xFF101216);
-  final Color statisticsBg = const Color.fromRGBO(30, 34, 42, 0.8);
-  final Color textColor = const Color(0xCCFCFDFF);
-  final Color succees = Colors.green;
-  final Color danger = Colors.red;
-  final Color info = Colors.blue;
-  final Color warning = Colors.orange;
-  final Color gray = Colors.blueGrey;
+  static const Color scaffoldBg = Color(0xFF0D0F14);
+  static const Color searchBarFill = Color(0xFF141921);
+  static const Color coffeeSelected = Color(0xFFD17741);
+  static const Color coffeeUnselected = Color(0xFF525559);
+  static const Color gradientTopLeft = Color(0xFF262B34);
+  static const Color gradientBottonRight = Color(0xFF101216);
+  static const Color statisticsBg = Color.fromRGBO(30, 34, 42, 0.8);
+  static const Color textColor = Color(0xCCFCFDFF);
+  static const Color succees = Colors.green;
+  static const Color danger = Colors.red;
+  static const Color info = Colors.blue;
+  static const Color warning = Colors.orange;
+  static const Color gray = Colors.blueGrey;
 }

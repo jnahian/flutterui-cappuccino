@@ -22,8 +22,8 @@ class PrimaryButton extends StatelessWidget {
       onPressed: isLoading ? null : onPressed,
       style: ElevatedButton.styleFrom(
         elevation: 4.0,
-        backgroundColor: ColorPalette().coffeeSelected,
-        disabledBackgroundColor: ColorPalette().coffeeUnselected,
+        backgroundColor: ColorPalette.coffeeSelected,
+        disabledBackgroundColor: ColorPalette.coffeeUnselected,
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
@@ -35,14 +35,14 @@ class PrimaryButton extends StatelessWidget {
               height: 20,
               width: 20,
               child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(ColorPalette().textColor),
+                valueColor: AlwaysStoppedAnimation<Color>(ColorPalette.textColor),
               ),
             )
           : Text(
               buttonText,
               style: GoogleFonts.sourceSans3(
                 fontWeight: FontWeight.bold,
-                color: ColorPalette().textColor,
+                color: ColorPalette.textColor,
                 fontSize: 17.0,
               ),
             ),

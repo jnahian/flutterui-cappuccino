@@ -30,8 +30,8 @@ class _RequestCoffeeState extends State<RequestCoffee> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: <Color>[
-              ColorPalette().gradientTopLeft,
-              ColorPalette().gradientBottonRight,
+              ColorPalette.gradientTopLeft,
+              ColorPalette.gradientBottonRight,
             ],
           ),
         ),
@@ -75,13 +75,13 @@ class _RequestCoffeeState extends State<RequestCoffee> {
                           children: [
                             Iconify(
                               Iconoir.coffee_cup,
-                              color: ColorPalette().coffeeSelected,
+                              color: ColorPalette.coffeeSelected,
                               size: 15.0,
                             ),
                             Text(
                               widget.cItem['availableCoupon'].toString(),
                               style: GoogleFonts.sourceSans3(
-                                  fontWeight: FontWeight.bold, color: ColorPalette().textColor, fontSize: 13.0),
+                                  fontWeight: FontWeight.bold, color: ColorPalette.textColor, fontSize: 13.0),
                             )
                           ],
                         ),
@@ -97,7 +97,7 @@ class _RequestCoffeeState extends State<RequestCoffee> {
                 child: Text(
                   widget.cItem['name']!,
                   style: GoogleFonts.sourceSans3(
-                      color: ColorPalette().textColor, fontSize: 20.0, fontWeight: FontWeight.bold),
+                      color: ColorPalette.textColor, fontSize: 20.0, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -108,7 +108,7 @@ class _RequestCoffeeState extends State<RequestCoffee> {
                   widget.cItem['ingredients'].map((item) {
                     return toBeginningOfSentenceCase(item.toString());
                   }).join(', '),
-                  style: GoogleFonts.sourceSans3(color: ColorPalette().textColor, fontSize: 14.0),
+                  style: GoogleFonts.sourceSans3(color: ColorPalette.textColor, fontSize: 14.0),
                 ),
               ),
             ),

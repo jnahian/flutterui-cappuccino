@@ -94,14 +94,14 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        fillColor: ColorPalette().searchBarFill,
+                        fillColor: ColorPalette.searchBarFill,
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(color: ColorPalette().coffeeSelected),
+                          borderSide: BorderSide(color: ColorPalette.coffeeSelected),
                         ),
                         errorStyle: GoogleFonts.sourceSans3(fontSize: 14, fontWeight: FontWeight.bold),
                       ),
-                      style: GoogleFonts.sourceSans3(color: ColorPalette().textColor),
+                      style: GoogleFonts.sourceSans3(color: ColorPalette.textColor),
                     ),
                   ),
                   const SizedBox(height: 10.0),

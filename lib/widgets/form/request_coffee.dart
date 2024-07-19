@@ -75,13 +75,13 @@ class RequestCoffeeState extends State<RequestCoffee> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    fillColor: ColorPalette().searchBarFill,
+                    fillColor: ColorPalette.searchBarFill,
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide(color: ColorPalette().coffeeSelected),
+                      borderSide: BorderSide(color: ColorPalette.coffeeSelected),
                     ),
                   ),
-                  style: GoogleFonts.sourceSans3(color: ColorPalette().textColor),
+                  style: GoogleFonts.sourceSans3(color: ColorPalette.textColor),
                 ),
               ),
               const SizedBox(height: 10.0),
@@ -96,7 +96,7 @@ class RequestCoffeeState extends State<RequestCoffee> {
                       onChanged: (bool? value) {
                         setState(() => _isChecked = value!);
                       },
-                      activeColor: ColorPalette().coffeeSelected,
+                      activeColor: ColorPalette.coffeeSelected,
                     ),
                     GestureDetector(
                       onTap: () => setState(() => _isChecked = !_isChecked),
@@ -118,7 +118,7 @@ class RequestCoffeeState extends State<RequestCoffee> {
                   width: screenWidth - 30,
                   padding: const EdgeInsets.symmetric(horizontal: 15.0),
                   decoration: BoxDecoration(
-                    color: ColorPalette().coffeeSelected,
+                    color: ColorPalette.coffeeSelected,
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   child: Center(
@@ -127,14 +127,14 @@ class RequestCoffeeState extends State<RequestCoffee> {
                             height: 20,
                             width: 20,
                             child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(ColorPalette().textColor),
+                              valueColor: AlwaysStoppedAnimation<Color>(ColorPalette.textColor),
                             ),
                           )
                         : Text(
                             'Request Coffee',
                             style: GoogleFonts.sourceSans3(
                               fontWeight: FontWeight.bold,
-                              color: ColorPalette().textColor,
+                              color: ColorPalette.textColor,
                               fontSize: 17.0,
                             ),
                           ),

@@ -100,7 +100,7 @@ class _RequestCoffeeScreenState extends State<RequestCoffeeScreen> {
                           Text(
                             widget.cItem['name']!,
                             style: GoogleFonts.sourceSans3(
-                              color: ColorPalette().textColor,
+                              color: ColorPalette.textColor,
                               fontSize: 25.0,
                               fontWeight: FontWeight.bold,
                             ),
@@ -117,14 +117,14 @@ class _RequestCoffeeScreenState extends State<RequestCoffeeScreen> {
                             children: [
                               Iconify(
                                 GameIcons.coffee_cup,
-                                color: ColorPalette().coffeeSelected,
+                                color: ColorPalette.coffeeSelected,
                                 size: 22.0,
                               ),
                               const SizedBox(width: 10.0),
                               Text(
                                 widget.cItem['availableCoupon'].toString(),
                                 style: GoogleFonts.sourceSans3(
-                                  color: ColorPalette().textColor,
+                                  color: ColorPalette.textColor,
                                   fontSize: 17.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -162,8 +162,8 @@ class _RequestCoffeeScreenState extends State<RequestCoffeeScreen> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Iconify(
-                                      IconPalette().coffeeCup2,
-                                      color: ColorPalette().coffeeSelected,
+                                      IconPalette.coffeeCup2,
+                                      color: ColorPalette.coffeeSelected,
                                       size: 21.0,
                                     ),
                                     const SizedBox(height: 2.0),
@@ -186,8 +186,8 @@ class _RequestCoffeeScreenState extends State<RequestCoffeeScreen> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Iconify(
-                                      IconPalette().milk,
-                                      color: ColorPalette().coffeeSelected,
+                                      IconPalette.milk,
+                                      color: ColorPalette.coffeeSelected,
                                       size: 21.0,
                                     ),
                                     const SizedBox(height: 2.0),
@@ -251,7 +251,7 @@ class _RequestCoffeeScreenState extends State<RequestCoffeeScreen> {
                           width: screenWidth - 30.0,
                           child: Text(
                             widget.cItem['description'],
-                            style: GoogleFonts.sourceSans3(color: ColorPalette().textColor, fontSize: 17.0),
+                            style: GoogleFonts.sourceSans3(color: ColorPalette.textColor, fontSize: 17.0),
                           ),
                         ),
                         const SizedBox(height: 10.0),

@@ -73,7 +73,7 @@ class SlideInSnackBarState extends State<SlideInSnackBar> with SingleTickerProvi
         padding: const EdgeInsets.only(bottom: 30),
         child: Material(
           elevation: 4.0,
-          color: ColorPalette().coffeeUnselected,
+          color: ColorPalette.coffeeUnselected,
           borderRadius: BorderRadius.circular(15),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
@@ -81,14 +81,14 @@ class SlideInSnackBarState extends State<SlideInSnackBar> with SingleTickerProvi
               children: [
                 Icon(
                   widget.isSuccess ? Icons.check_circle : Icons.error,
-                  color: widget.isSuccess ? ColorPalette().succees : ColorPalette().danger,
+                  color: widget.isSuccess ? ColorPalette.succees : ColorPalette.danger,
                 ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
                     widget.message,
                     style: GoogleFonts.sourceSans3(
-                      color: widget.isSuccess ? ColorPalette().succees : ColorPalette().danger,
+                      color: widget.isSuccess ? ColorPalette.succees : ColorPalette.danger,
                       fontWeight: FontWeight.w500,
                     ),
                   ),

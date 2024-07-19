@@ -6,11 +6,13 @@ import 'package:iconify_flutter/icons/material_symbols.dart';
 import 'package:iconify_flutter/icons/tabler.dart';
 
 class IconPalette {
-  final String home = Iconoir.home_alt;
-  final String coffeeCup = Iconoir.coffee_cup;
-  final String coffeeCup2 = VscodeIcons.file_type_coffeescript;
-  final String coffeeBeans = GameIcons.coffee_beans;
-  final String milk = Tabler.milk;
-  final String heart = Emojione.heart_suit;
-  final String backArrow = MaterialSymbols.arrow_back_ios_rounded;
+  static const String home = MaterialSymbols.home_outline_rounded;
+  static const String notification = MaterialSymbols.notifications_outline_rounded;
+  static const String login = MaterialSymbols.login_rounded;
+  static const String coffeeCup = Iconoir.coffee_cup;
+  static const String coffeeCup2 = VscodeIcons.file_type_coffeescript;
+  static const String coffeeBeans = GameIcons.coffee_beans;
+  static const String milk = Tabler.milk;
+  static const String heart = Emojione.heart_suit;
+  static const String backArrow = MaterialSymbols.arrow_back_ios_rounded;
 }

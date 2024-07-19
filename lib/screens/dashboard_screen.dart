@@ -8,14 +8,11 @@ import 'package:iconify_flutter/icons/heroicons.dart';
 import 'package:wp_cafe/bloc/auth_bloc.dart';
 import 'package:wp_cafe/bloc/auth_event.dart';
 import 'package:wp_cafe/bloc/auth_state.dart';
-import 'package:wp_cafe/bloc/menu_bloc.dart';
-import 'package:wp_cafe/bloc/menu_event.dart';
-import 'package:wp_cafe/bloc/menu_state.dart';
 import 'package:wp_cafe/enums/color_palette.dart';
 import 'package:wp_cafe/enums/icon_palette.dart';
 import 'package:wp_cafe/models/statistic.dart';
+import 'package:wp_cafe/widgets/barista_status.dart';
 import 'package:wp_cafe/widgets/bottom_navigation.dart';
-import 'package:wp_cafe/widgets/form/request_coffee.dart';
 import 'package:wp_cafe/widgets/requested_item.dart';
 import 'package:wp_cafe/widgets/say_greeting.dart';
 
@@ -32,7 +29,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorPalette().scaffoldBg,
+      backgroundColor: ColorPalette.scaffoldBg,
       bottomNavigationBar: const BottomNavigation(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,7 +83,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           width: 42.0,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12.0),
-                            color: ColorPalette().coffeeUnselected,
+                            color: ColorPalette.coffeeUnselected,
                           ),
                           child: Container(
                             decoration: BoxDecoration(
@@ -106,7 +103,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         width: 42.0,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.0),
-                          color: ColorPalette().coffeeUnselected,
+                          color: ColorPalette.coffeeUnselected,
                         ),
                       );
                     },
@@ -123,22 +120,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   Container(
                     padding: const EdgeInsets.only(left: 15.0, top: 15.0, right: 15.0),
                     width: MediaQuery.of(context).size.width,
-                    child: Row(
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const SayGreeting(),
-                        Wrap(
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          children: [
-                            const Iconify(
-                              Ci.dot_04_l,
-                              color: Colors.green,
-                            ),
-                            Text('Barista is Online',
-                                style: GoogleFonts.sourceSans3(
-                                    fontWeight: FontWeight.bold, color: ColorPalette().textColor, fontSize: 14.0)),
-                          ],
-                        ),
+                        SayGreeting(),
+                        BaristaStatus(),
                       ],
                     ),
                   ),
@@ -152,7 +138,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           state is UserDataLoaded ? state.userData['name'] : "",
                           style:
                               GoogleFonts.sourceSans3(
-                              fontWeight: FontWeight.bold, color: ColorPalette().textColor, fontSize: 32.0),
+                              fontWeight: FontWeight.bold, color: ColorPalette.textColor, fontSize: 32.0),
                         );
                       },
                     ),
@@ -166,12 +152,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           Statistic(
                             count: (state is UserCouponLoaded ? state.userCoupon['available'] : 0).toString(),
                             label: "Available Coffee",
-                            icon: IconPalette().coffeeBeans,
+                            icon: IconPalette.coffeeBeans,
                           ),
                           Statistic(
                             count: (state is UserCouponLoaded ? state.userCoupon['consumed'] : 0).toString(),
                             label: "Consumed Coffee",
-                            icon: IconPalette().coffeeCup,
+                            icon: IconPalette.coffeeCup,
                           ),
                         ];
                         return Container(
@@ -195,7 +181,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     child: Text(
                       'Enjoy a coffee :)',
                       style: GoogleFonts.sourceSans3(
-                          fontWeight: FontWeight.bold, color: ColorPalette().textColor, fontSize: 18.0),
+                          fontWeight: FontWeight.bold, color: ColorPalette.textColor, fontSize: 18.0),
                     ),
                   ),
                   const RequestedItem(),
@@ -209,7 +195,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   //           height: 300,
                   //           alignment: Alignment.center,
                   //           child: CircularProgressIndicator(
-                  //             color: ColorPalette().coffeeSelected,
+                  //             color: ColorPalette.coffeeSelected,
                   //           ),
                   //         );
                   //       } else if (state is MenuLoaded) {
@@ -260,7 +246,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         height: 100.0,
         width: (MediaQuery.of(context).size.width - 50) / 2,
         decoration: BoxDecoration(
-          color: ColorPalette().statisticsBg,
+          color: ColorPalette.statisticsBg,
           borderRadius: BorderRadius.circular(15.0),
         ),
         child: Column(
@@ -275,10 +261,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   width: 42.0,
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: ColorPalette().coffeeSelected,
+                    color: ColorPalette.coffeeSelected,
                     borderRadius: BorderRadius.circular(12.0),
                   ),
-                  child: Iconify(sItem.icon!, size: 12.0, color: ColorPalette().textColor),
+                  child: Iconify(sItem.icon!, size: 12.0, color: ColorPalette.textColor),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 15),

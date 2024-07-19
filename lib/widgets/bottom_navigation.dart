@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:wp_cafe/enums/color_palette.dart';
 import 'package:wp_cafe/enums/icon_palette.dart';
+import 'package:wp_cafe/screens/dashboard_screen.dart';
 import 'package:wp_cafe/screens/login_screen.dart';
+import 'package:wp_cafe/screens/notification_screen.dart';
 
 class BottomNavigation extends StatelessWidget {
   const BottomNavigation({Key? key}) : super(key: key);
@@ -16,29 +19,36 @@ class BottomNavigation extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
-            onTap: () {},
-            child: Icon(Icons.home_outlined, color: ColorPalette().textColor),
-          ),
-          GestureDetector(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginScreen()));
             },
-            child: Icon(Icons.login_outlined, color: ColorPalette().textColor),
+            child: Iconify(IconPalette.login, color: ColorPalette.textColor),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => DashboardScreen()));
+            },
+            child: Iconify(IconPalette.home, color: ColorPalette.textColor),
           ),
           // const Iconify(Ri.heart_2_fill, color: Color(0xFF4E4F53)),
-          Stack(
-            children: [
-              Icon(Icons.notifications_outlined, color: ColorPalette().textColor),
-              Positioned(
-                top: 2.0,
-                left: 15.0,
-                child: Container(
-                  height: 7.0,
-                  width: 7.0,
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(3.5), color: Colors.red),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => NotificationScreen()));
+            },
+            child: Stack(
+              children: [
+                Iconify(IconPalette.notification, color: ColorPalette.textColor),
+                Positioned(
+                  top: 2.0,
+                  left: 15.0,
+                  child: Container(
+                    height: 7.0,
+                    width: 7.0,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(3.5), color: Colors.red),
+                  ),
                 ),
-              )
-            ],
+              ],
+            ),
           )
         ],
       ),

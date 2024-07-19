@@ -39,3 +39,11 @@ class FetchUserCoupon extends AuthEvent {
   @override
   List<Object> get props => [];
 }
+
+
+class FetchBaristaStatus extends AuthEvent {
+  const FetchBaristaStatus();
+
+  @override
+  List<Object> get props => [];
+}
