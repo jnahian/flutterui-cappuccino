@@ -20,6 +20,12 @@ class BottomNavigation extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
+              // Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginScreen()));
+            },
+            child: Iconify(IconPalette.bars, color: ColorPalette.textColor),
+          ),
+          GestureDetector(
+            onTap: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginScreen()));
             },
             child: Iconify(IconPalette.login, color: ColorPalette.textColor),

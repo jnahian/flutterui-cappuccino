@@ -13,6 +13,7 @@ import 'package:wp_cafe/enums/icon_palette.dart';
 import 'package:wp_cafe/models/statistic.dart';
 import 'package:wp_cafe/widgets/barista_status.dart';
 import 'package:wp_cafe/widgets/bottom_navigation.dart';
+import 'package:wp_cafe/widgets/maintainance.dart';
 import 'package:wp_cafe/widgets/requested_item.dart';
 import 'package:wp_cafe/widgets/say_greeting.dart';
 
@@ -185,6 +186,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                   ),
                   const RequestedItem(),
+                  Maintainance(),
                   // const SizedBox(height: 10.0),
                   // BlocProvider(
                   //   create: (context) => MenuBloc()..add(FetchMenus()),
