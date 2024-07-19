@@ -81,7 +81,7 @@ class _RequestCoffeeState extends State<RequestCoffee> {
                             Text(
                               widget.cItem['availableCoupon'].toString(),
                               style: GoogleFonts.sourceSans3(
-                                  fontWeight: FontWeight.bold, color: Colors.white, fontSize: 13.0),
+                                  fontWeight: FontWeight.bold, color: ColorPalette().textColor, fontSize: 13.0),
                             )
                           ],
                         ),
@@ -96,7 +96,8 @@ class _RequestCoffeeState extends State<RequestCoffee> {
               child: Center(
                 child: Text(
                   widget.cItem['name']!,
-                  style: GoogleFonts.sourceSans3(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),
+                  style: GoogleFonts.sourceSans3(
+                      color: ColorPalette().textColor, fontSize: 20.0, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -107,7 +108,7 @@ class _RequestCoffeeState extends State<RequestCoffee> {
                   widget.cItem['ingredients'].map((item) {
                     return toBeginningOfSentenceCase(item.toString());
                   }).join(', '),
-                  style: GoogleFonts.sourceSans3(color: Colors.white, fontSize: 14.0),
+                  style: GoogleFonts.sourceSans3(color: ColorPalette().textColor, fontSize: 14.0),
                 ),
               ),
             ),

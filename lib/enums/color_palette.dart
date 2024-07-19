@@ -8,5 +8,10 @@ class ColorPalette {
   final Color gradientTopLeft = const Color(0xFF262B34);
   final Color gradientBottonRight = const Color(0xFF101216);
   final Color statisticsBg = const Color.fromRGBO(30, 34, 42, 0.8);
-  final Color inputTextColor = const Color(0xCCFCFDFF);
+  final Color textColor = const Color(0xCCFCFDFF);
+  final Color succees = Colors.green;
+  final Color danger = Colors.red;
+  final Color info = Colors.blue;
+  final Color warning = Colors.orange;
+  final Color gray = Colors.blueGrey;
 }

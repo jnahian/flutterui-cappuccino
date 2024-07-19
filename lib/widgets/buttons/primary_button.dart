@@ -31,18 +31,18 @@ class PrimaryButton extends StatelessWidget {
         fixedSize: Size(width - 30, 48),
       ),
       child: isLoading
-          ? const SizedBox(
+          ? SizedBox(
               height: 20,
               width: 20,
               child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                valueColor: AlwaysStoppedAnimation<Color>(ColorPalette().textColor),
               ),
             )
           : Text(
               buttonText,
               style: GoogleFonts.sourceSans3(
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: ColorPalette().textColor,
                 fontSize: 17.0,
               ),
             ),

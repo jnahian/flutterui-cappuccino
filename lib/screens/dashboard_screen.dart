@@ -16,6 +16,7 @@ import 'package:wp_cafe/enums/icon_palette.dart';
 import 'package:wp_cafe/models/statistic.dart';
 import 'package:wp_cafe/widgets/bottom_navigation.dart';
 import 'package:wp_cafe/widgets/form/request_coffee.dart';
+import 'package:wp_cafe/widgets/requested_item.dart';
 import 'package:wp_cafe/widgets/say_greeting.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -135,7 +136,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                             Text('Barista is Online',
                                 style: GoogleFonts.sourceSans3(
-                                    fontWeight: FontWeight.bold, color: Colors.white, fontSize: 14.0)),
+                                    fontWeight: FontWeight.bold, color: ColorPalette().textColor, fontSize: 14.0)),
                           ],
                         ),
                       ],
@@ -150,7 +151,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         return Text(
                           state is UserDataLoaded ? state.userData['name'] : "",
                           style:
-                              GoogleFonts.sourceSans3(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 32.0),
+                              GoogleFonts.sourceSans3(
+                              fontWeight: FontWeight.bold, color: ColorPalette().textColor, fontSize: 32.0),
                         );
                       },
                     ),
@@ -192,55 +194,57 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     width: MediaQuery.of(context).size.width,
                     child: Text(
                       'Enjoy a coffee :)',
-                      style: GoogleFonts.sourceSans3(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18.0),
+                      style: GoogleFonts.sourceSans3(
+                          fontWeight: FontWeight.bold, color: ColorPalette().textColor, fontSize: 18.0),
                     ),
                   ),
+                  const RequestedItem(),
                   // const SizedBox(height: 10.0),
-                  BlocProvider(
-                    create: (context) => MenuBloc()..add(FetchMenus()),
-                    child: BlocBuilder<MenuBloc, MenuState>(
-                      builder: (context, state) {
-                        if (state is MenuLoading) {
-                          return Container(
-                            height: 300,
-                            alignment: Alignment.center,
-                            child: CircularProgressIndicator(
-                              color: ColorPalette().coffeeSelected,
-                            ),
-                          );
-                        } else if (state is MenuLoaded) {
-                          return SizedBox(
-                            width: MediaQuery.of(context).size.width,
-                            child: Container(
-                              color: const Color(0xFF0D0F14),
-                              padding: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
-                              child: GridView.count(
-                                padding: EdgeInsets.zero,
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                crossAxisSpacing: 15,
-                                mainAxisSpacing: 15,
-                                crossAxisCount: 2,
-                                childAspectRatio: 0.72,
-                                children: [
-                                  ...state.menus.map((e) {
-                                    return RequestCoffee(cItem: e);
-                                  }).toList()
-                                ],
-                              ),
-                            ),
-                          );
-                        } else if (state is MenuError) {
-                          return Center(
-                              child: Text(
-                            'Error: ${state.message}',
-                            style: TextStyle(color: Colors.red),
-                          ));
-                        }
-                        return const Center(child: Text('Press the button to fetch posts'));
-                      },
-                    ),
-                  ),
+                  // BlocProvider(
+                  //   create: (context) => MenuBloc()..add(FetchMenus()),
+                  //   child: BlocBuilder<MenuBloc, MenuState>(
+                  //     builder: (context, state) {
+                  //       if (state is MenuLoading) {
+                  //         return Container(
+                  //           height: 300,
+                  //           alignment: Alignment.center,
+                  //           child: CircularProgressIndicator(
+                  //             color: ColorPalette().coffeeSelected,
+                  //           ),
+                  //         );
+                  //       } else if (state is MenuLoaded) {
+                  //         return SizedBox(
+                  //           width: MediaQuery.of(context).size.width,
+                  //           child: Container(
+                  //             color: const Color(0xFF0D0F14),
+                  //             padding: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
+                  //             child: GridView.count(
+                  //               padding: EdgeInsets.zero,
+                  //               physics: const NeverScrollableScrollPhysics(),
+                  //               shrinkWrap: true,
+                  //               crossAxisSpacing: 15,
+                  //               mainAxisSpacing: 15,
+                  //               crossAxisCount: 2,
+                  //               childAspectRatio: 0.72,
+                  //               children: [
+                  //                 ...state.menus.map((e) {
+                  //                   return RequestCoffee(cItem: e);
+                  //                 }).toList()
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         );
+                  //       } else if (state is MenuError) {
+                  //         return Center(
+                  //             child: Text(
+                  //           'Error: ${state.message}',
+                  //           style: TextStyle(color: Colors.red),
+                  //         ));
+                  //       }
+                  //       return const Center(child: Text('Press the button to fetch posts'));
+                  //     },
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -274,7 +278,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     color: ColorPalette().coffeeSelected,
                     borderRadius: BorderRadius.circular(12.0),
                   ),
-                  child: Iconify(sItem.icon!, size: 12.0, color: Colors.white),
+                  child: Iconify(sItem.icon!, size: 12.0, color: ColorPalette().textColor),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 15),

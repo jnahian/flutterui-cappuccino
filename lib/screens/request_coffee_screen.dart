@@ -100,7 +100,7 @@ class _RequestCoffeeScreenState extends State<RequestCoffeeScreen> {
                           Text(
                             widget.cItem['name']!,
                             style: GoogleFonts.sourceSans3(
-                              color: Colors.white,
+                              color: ColorPalette().textColor,
                               fontSize: 25.0,
                               fontWeight: FontWeight.bold,
                             ),
@@ -124,7 +124,7 @@ class _RequestCoffeeScreenState extends State<RequestCoffeeScreen> {
                               Text(
                                 widget.cItem['availableCoupon'].toString(),
                                 style: GoogleFonts.sourceSans3(
-                                  color: Colors.white,
+                                  color: ColorPalette().textColor,
                                   fontSize: 17.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -251,7 +251,7 @@ class _RequestCoffeeScreenState extends State<RequestCoffeeScreen> {
                           width: screenWidth - 30.0,
                           child: Text(
                             widget.cItem['description'],
-                            style: GoogleFonts.sourceSans3(color: Colors.white, fontSize: 17.0),
+                            style: GoogleFonts.sourceSans3(color: ColorPalette().textColor, fontSize: 17.0),
                           ),
                         ),
                         const SizedBox(height: 10.0),

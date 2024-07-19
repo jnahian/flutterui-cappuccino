@@ -70,7 +70,7 @@ class SlideInSnackBarState extends State<SlideInSnackBar> with SingleTickerProvi
     return SlideTransition(
       position: _slideAnimation,
       child: Padding(
-        padding: EdgeInsets.only(bottom: 30),
+        padding: const EdgeInsets.only(bottom: 30),
         child: Material(
           elevation: 4.0,
           color: ColorPalette().coffeeUnselected,
@@ -81,14 +81,14 @@ class SlideInSnackBarState extends State<SlideInSnackBar> with SingleTickerProvi
               children: [
                 Icon(
                   widget.isSuccess ? Icons.check_circle : Icons.error,
-                  color: widget.isSuccess ? Colors.green : Colors.red,
+                  color: widget.isSuccess ? ColorPalette().succees : ColorPalette().danger,
                 ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
                     widget.message,
                     style: GoogleFonts.sourceSans3(
-                      color: widget.isSuccess ? Colors.green : Colors.red,
+                      color: widget.isSuccess ? ColorPalette().succees : ColorPalette().danger,
                       fontWeight: FontWeight.w500,
                     ),
                   ),

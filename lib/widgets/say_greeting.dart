@@ -18,7 +18,7 @@ class _SayGreetingState extends State<SayGreeting> {
   void initState() {
     super.initState();
     updateGreeting();
-    Timer.periodic(Duration(minutes: 1), (Timer t) => updateGreeting());
+    Timer.periodic(Duration(hours: 1), (Timer t) => updateGreeting());
   }
 
   void updateGreeting() {
@@ -27,13 +27,13 @@ class _SayGreetingState extends State<SayGreeting> {
 
     String newGreeting;
     if (hour >= 5 && hour < 12) {
-      newGreeting = 'Good Morning';
+      newGreeting = 'Good Morning!';
     } else if (hour >= 12 && hour < 17) {
-      newGreeting = 'Good Afternoon';
+      newGreeting = 'Good Afternoon!';
     } else if (hour >= 17 && hour < 21) {
-      newGreeting = 'Good Evening';
+      newGreeting = 'Good Evening!';
     } else {
-      newGreeting = 'Good Night';
+      newGreeting = 'Good Night!';
     }
 
     setState(() {

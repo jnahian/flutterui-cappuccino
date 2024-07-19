@@ -81,7 +81,7 @@ class RequestCoffeeState extends State<RequestCoffee> {
                       borderSide: BorderSide(color: ColorPalette().coffeeSelected),
                     ),
                   ),
-                  style: GoogleFonts.sourceSans3(color: ColorPalette().inputTextColor),
+                  style: GoogleFonts.sourceSans3(color: ColorPalette().textColor),
                 ),
               ),
               const SizedBox(height: 10.0),
@@ -123,18 +123,18 @@ class RequestCoffeeState extends State<RequestCoffee> {
                   ),
                   child: Center(
                     child: state is OrderLoading
-                        ? const SizedBox(
+                        ? SizedBox(
                             height: 20,
                             width: 20,
                             child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                              valueColor: AlwaysStoppedAnimation<Color>(ColorPalette().textColor),
                             ),
                           )
                         : Text(
                             'Request Coffee',
                             style: GoogleFonts.sourceSans3(
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: ColorPalette().textColor,
                               fontSize: 17.0,
                             ),
                           ),

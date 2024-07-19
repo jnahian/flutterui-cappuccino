@@ -112,7 +112,7 @@ class _LoginFormState extends State<LoginForm> {
                         ),
                         errorStyle: GoogleFonts.sourceSans3(fontSize: 14, fontWeight: FontWeight.bold),
                       ),
-                      style: GoogleFonts.sourceSans3(color: ColorPalette().inputTextColor),
+                      style: GoogleFonts.sourceSans3(color: ColorPalette().textColor),
                     ),
                   ),
                   const SizedBox(height: 10.0),
@@ -145,7 +145,7 @@ class _LoginFormState extends State<LoginForm> {
                       ),
                       errorStyle: GoogleFonts.sourceSans3(fontSize: 14, fontWeight: FontWeight.bold),
                     ),
-                    style: GoogleFonts.sourceSans3(color: ColorPalette().inputTextColor),
+                    style: GoogleFonts.sourceSans3(color: ColorPalette().textColor),
                   ),
                   Container(
                     width: screenWidth - 30.0,
