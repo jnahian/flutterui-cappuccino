@@ -28,3 +28,19 @@ class FetchOrderData extends OrderEvent {
   @override
   List<Object> get props => [id];
 }
+
+class FetchPendingOrders extends OrderEvent {
+  const FetchPendingOrders();
+
+  @override
+  List<Object> get props => [];
+}
+
+class CancelOrder extends OrderEvent {
+  final String id;
+
+  const CancelOrder(this.id);
+
+  @override
+  List<Object> get props => [id];
+}

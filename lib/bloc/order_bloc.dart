@@ -10,6 +10,9 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
   OrderBloc() : super(OrderInitial()) {
     on<FetchOrders>(_onFetchOrders);
     on<PostOrder>(_onPostOrder);
+    on<FetchOrderData>(_onFetchOrderDetails);
+    on<FetchPendingOrders>(_onFetchPendingOrders);
+    on<CancelOrder>(_onCancelOrder);
   }
 
   Future<void> _onPostOrder(PostOrder event, Emitter<OrderState> emit) async {
@@ -41,6 +44,28 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
     try {
       final response = await apiService.getRequest('/order/$event.id');
       emit(OrderLoaded(response['data']['order']));
+    } catch (e) {
+      emit(OrderError(e.toString()));
+    }
+  }
+
+  Future<void> _onFetchPendingOrders(FetchPendingOrders event, Emitter<OrderState> emit) async {
+    try {
+      final response = await apiService.getRequest('/orders/pending');
+      emit(PendingOrderLoaded(response['data']['orders']));
+    } catch (e) {
+      print(e);
+      // emit(OrderError(e.toString()));
+    }
+  }
+
+  Future<void> _onCancelOrder(CancelOrder event, Emitter<OrderState> emit) async {
+    emit(OrderCancelling());
+    try {
+      final response = await apiService.postRequest('/order', {
+        'menu_id': event.id,
+      });
+      emit(OrderCancelled(response['message']));
     } catch (e) {
       emit(OrderError(e.toString()));
     }

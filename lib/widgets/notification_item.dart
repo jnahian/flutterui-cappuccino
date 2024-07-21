@@ -56,6 +56,7 @@ class NotificationItem extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "Your request for Cappuccino is pending by Julkar Naen Nahian",

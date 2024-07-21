@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wp_cafe/enums/color_palette.dart';
 
 class BackButton extends StatelessWidget {
   const BackButton({Key? key}) : super(key: key);
@@ -10,15 +11,15 @@ class BackButton extends StatelessWidget {
         Navigator.of(context).pop();
       },
       child: Container(
-        height: 45.0,
-        width: 45.0,
+        height: 35.0,
+        width: 35.0,
         decoration: BoxDecoration(
-          color: const Color(0xFF14181D),
+          color: ColorPalette.gradientTopLeft,
           border: Border.all(
-            color: const Color(0xFF322B2E),
+            color: ColorPalette.gradientTopLeft,
             width: 1.0,
           ),
-          borderRadius: BorderRadius.circular(15.0),
+          borderRadius: BorderRadius.circular(12.0),
         ),
         child: const Icon(
           Icons.arrow_back_ios_new_rounded,

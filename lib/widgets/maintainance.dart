@@ -41,21 +41,14 @@ class _MaintainanceState extends State<Maintainance> {
             ),
             const SizedBox(height: 10),
             Text(
-              'WPCafe coffee service is under maintanance!',
+              'WPCafe coffee service is under maintanance! Please check back later.',
+              textAlign: TextAlign.center,
               style: GoogleFonts.sourceSans3(
                 color: ColorPalette.textColor,
                 fontSize: 17.0,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w600,
               ),
             ),
-            Text(
-              'Please check back later.',
-              style: GoogleFonts.sourceSans3(
-                color: ColorPalette.textColor,
-                fontSize: 17.0,
-                fontWeight: FontWeight.w500,
-              ),
-            )
           ],
         ),
       ),

@@ -20,4 +20,9 @@ class IconPalette {
   static const String backArrow = MaterialSymbols.arrow_back_ios_rounded;
   static const String bars = MaterialSymbols.menu_rounded;
   static const String restricted = MaterialSymbols.warning_outline_rounded;
+  static const String profile = MaterialSymbols.person_2_outline_rounded;
+  static const String password = MaterialSymbols.key_outline_rounded;
+  static const String conversion = MaterialSymbols.sync_alt_rounded;
+  static const String history = MaterialSymbols.note_alt_outline_rounded;
+  static const String request = MaterialSymbols.back_hand_outline_rounded;
 }

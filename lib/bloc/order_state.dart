@@ -37,3 +37,23 @@ class OrderError extends OrderState {
   @override
   List<Object> get props => [message];
 }
+
+class PendingOrderLoaded extends OrderState {
+  final List<Object> pendingOrders;
+
+  const PendingOrderLoaded(this.pendingOrders);
+
+  @override
+  List<Object> get props => [pendingOrders];
+}
+
+class OrderCancelling extends OrderState {}
+
+class OrderCancelled extends OrderState {
+  final String message;
+
+  const OrderCancelled(this.message);
+
+  @override
+  List<Object> get props => [message];
+}

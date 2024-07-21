@@ -9,7 +9,7 @@ class StatusBadge extends StatefulWidget {
   const StatusBadge({Key? key, required this.label}) : super(key: key);
 
   @override
-  _StatusBadgeState createState() => _StatusBadgeState();
+  State<StatusBadge> createState() => _StatusBadgeState();
 }
 
 class _StatusBadgeState extends State<StatusBadge> {
