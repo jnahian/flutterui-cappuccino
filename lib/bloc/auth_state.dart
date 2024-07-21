@@ -20,6 +20,8 @@ class Authenticated extends AuthState {
   List<Object> get props => [token];
 }
 
+class UserLoggedOut extends AuthState {}
+
 class ForgotPassword extends AuthState {
   final String email;
 

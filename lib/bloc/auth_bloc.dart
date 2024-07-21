@@ -9,6 +9,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   AuthBloc() : super(AuthInitial()) {
     on<AuthenticateUser>(_onAuthenticateUser);
+    on<LogoutUser>(_onLogoutUser);
     on<FetchUserData>(_onFetchUserData);
     on<FetchUserCoupon>(_onFetchUserCoupon);
     on<PostPasswordForgot>(_onPostPasswordForgot);
@@ -22,6 +23,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       localStorage.setItem('token', response['data']['token']);
       emit(Authenticated(response['data']['token']));
       emit(UserDataLoaded(response['data']['user']));
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> _onLogoutUser(LogoutUser event, Emitter<AuthState> emit) async {
+    try {
+      final response = await apiService.logout();
+      localStorage.removeItem('token');
+      emit(UserLoggedOut());
     } catch (e) {
       emit(AuthError(e.toString()));
     }

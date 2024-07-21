@@ -25,6 +25,23 @@ class ApiService {
     }
   }
 
+  Future<dynamic> logout() async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/logout'),
+      headers: {
+        'Accept': accept,
+        "Content-Type": accept,
+        'Authorization': 'Bearer $_token',
+      },
+    );
+
+    if (response.statusCode == 201 || response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      throw Exception('Failed to logout');
+    }
+  }
+
   Future<Map<String, dynamic>> getUserData() async {
     final response = await http.get(
       Uri.parse('$baseUrl/user'),
