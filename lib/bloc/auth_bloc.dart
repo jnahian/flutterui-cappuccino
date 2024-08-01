@@ -20,6 +20,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthLoading());
     try {
       final response = await apiService.authenticateUser(event.email, event.password);
+      // print(response);
       localStorage.setItem('token', response['data']['token']);
       emit(Authenticated(response['data']['token']));
       emit(UserDataLoaded(response['data']['user']));
@@ -70,11 +71,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> _onFetchBaristaStatus(FetchBaristaStatus event, Emitter<AuthState> emit) async {
     try {
-      final body = await apiService.getRequest('/barista-stauts');
-      emit(BaristaStatusLoaded(body['data']['barista_status']));
+      final body = await apiService.getRequest('/barista-status');
+      emit(MaintananceStatusLoaded(body['is_maintenance']));
+      emit(BaristaStatusLoaded(body['data']['status']));
     } catch (e) {
-      // emit(BaristaStatusLoaded(false));
-      print(e);
+      emit(const BaristaStatusLoaded(false));
+      print("Barista status error: $e");
       // emit(AuthError(e.toString()));
     }
   }

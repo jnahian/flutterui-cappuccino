@@ -66,3 +66,12 @@ class BaristaStatusLoaded extends AuthState {
   @override
   List<Object> get props => [baristaStatus];
 }
+
+class MaintananceStatusLoaded extends AuthState {
+  final bool maintainance;
+
+  const MaintananceStatusLoaded(this.maintainance);
+
+  @override
+  List<Object> get props => [maintainance];
+}

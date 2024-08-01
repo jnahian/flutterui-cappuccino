@@ -1,10 +1,11 @@
 import 'package:iconify_flutter/icons/game_icons.dart';
 import 'package:wp_cafe/enums/color_palette.dart';
 import 'package:wp_cafe/enums/icon_palette.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide BackButton;
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
+import 'package:wp_cafe/widgets/buttons/back_button.dart';
 import 'package:wp_cafe/widgets/form/request_coffee.dart';
 
 class RequestCoffeeScreen extends StatefulWidget {
@@ -48,28 +49,28 @@ class _RequestCoffeeScreenState extends State<RequestCoffeeScreen> {
               color: Colors.transparent,
               height: 50.0,
               width: screenWidth - 20.0,
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const BackButton(),
-                  GestureDetector(
-                    onTap: () {
-                      // Navigator.of(context).pop();
-                    },
-                    child: Container(
-                      height: 45.0,
-                      width: 45.0,
-                      decoration: BoxDecoration(
-                          color: const Color(0xFF14181D),
-                          border: Border.all(color: const Color(0xFF322B2E), width: 1.0),
-                          borderRadius: BorderRadius.circular(15.0)),
-                      child: const Icon(
-                        Icons.favorite_rounded,
-                        color: Color(0xFF525154),
-                        size: 17.0,
-                      ),
-                    ),
-                  )
+                  BackButton(),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     // Navigator.of(context).pop();
+                  //   },
+                  //   child: Container(
+                  //     height: 45.0,
+                  //     width: 45.0,
+                  //     decoration: BoxDecoration(
+                  //         color: const Color(0xFF14181D),
+                  //         border: Border.all(color: const Color(0xFF322B2E), width: 1.0),
+                  //         borderRadius: BorderRadius.circular(15.0)),
+                  //     child: const Icon(
+                  //       Icons.favorite_rounded,
+                  //       color: Color(0xFF525154),
+                  //       size: 17.0,
+                  //     ),
+                  //   ),
+                  // )
                 ],
               ),
             ),
@@ -115,7 +116,7 @@ class _RequestCoffeeScreenState extends State<RequestCoffeeScreen> {
                           const SizedBox(height: 10.0),
                           Row(
                             children: [
-                              Iconify(
+                              const Iconify(
                                 GameIcons.coffee_cup,
                                 color: ColorPalette.coffeeSelected,
                                 size: 22.0,
@@ -161,7 +162,7 @@ class _RequestCoffeeScreenState extends State<RequestCoffeeScreen> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Iconify(
+                                    const Iconify(
                                       IconPalette.coffeeCup2,
                                       color: ColorPalette.coffeeSelected,
                                       size: 21.0,
@@ -185,7 +186,7 @@ class _RequestCoffeeScreenState extends State<RequestCoffeeScreen> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Iconify(
+                                    const Iconify(
                                       IconPalette.milk,
                                       color: ColorPalette.coffeeSelected,
                                       size: 21.0,

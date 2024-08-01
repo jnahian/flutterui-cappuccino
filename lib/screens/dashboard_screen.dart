@@ -7,11 +7,15 @@ import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:wp_cafe/bloc/auth_bloc.dart';
 import 'package:wp_cafe/bloc/auth_event.dart';
 import 'package:wp_cafe/bloc/auth_state.dart';
+import 'package:wp_cafe/bloc/menu_bloc.dart';
+import 'package:wp_cafe/bloc/menu_event.dart';
+import 'package:wp_cafe/bloc/menu_state.dart';
 import 'package:wp_cafe/enums/color_palette.dart';
 import 'package:wp_cafe/enums/icon_palette.dart';
 import 'package:wp_cafe/models/statistic.dart';
 import 'package:wp_cafe/widgets/barista_status.dart';
 import 'package:wp_cafe/widgets/bottom_navigation.dart';
+import 'package:wp_cafe/widgets/request_coffee.dart';
 import 'package:wp_cafe/widgets/maintainance.dart';
 import 'package:wp_cafe/widgets/requested_item.dart';
 import 'package:wp_cafe/widgets/say_greeting.dart';
@@ -193,52 +197,52 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                   const RequestedItem(),
                   const Maintainance(),
-                  // const SizedBox(height: 10.0),
-                  // BlocProvider(
-                  //   create: (context) => MenuBloc()..add(FetchMenus()),
-                  //   child: BlocBuilder<MenuBloc, MenuState>(
-                  //     builder: (context, state) {
-                  //       if (state is MenuLoading) {
-                  //         return Container(
-                  //           height: 300,
-                  //           alignment: Alignment.center,
-                  //           child: CircularProgressIndicator(
-                  //             color: ColorPalette.coffeeSelected,
-                  //           ),
-                  //         );
-                  //       } else if (state is MenuLoaded) {
-                  //         return SizedBox(
-                  //           width: MediaQuery.of(context).size.width,
-                  //           child: Container(
-                  //             color: const Color(0xFF0D0F14),
-                  //             padding: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
-                  //             child: GridView.count(
-                  //               padding: EdgeInsets.zero,
-                  //               physics: const NeverScrollableScrollPhysics(),
-                  //               shrinkWrap: true,
-                  //               crossAxisSpacing: 15,
-                  //               mainAxisSpacing: 15,
-                  //               crossAxisCount: 2,
-                  //               childAspectRatio: 0.72,
-                  //               children: [
-                  //                 ...state.menus.map((e) {
-                  //                   return RequestCoffee(cItem: e);
-                  //                 }).toList()
-                  //               ],
-                  //             ),
-                  //           ),
-                  //         );
-                  //       } else if (state is MenuError) {
-                  //         return Center(
-                  //             child: Text(
-                  //           'Error: ${state.message}',
-                  //           style: TextStyle(color: Colors.red),
-                  //         ));
-                  //       }
-                  //       return const Center(child: Text('Press the button to fetch posts'));
-                  //     },
-                  //   ),
-                  // ),
+                  const SizedBox(height: 10.0),
+                  BlocProvider(
+                    create: (context) => MenuBloc()..add(FetchMenus()),
+                    child: BlocBuilder<MenuBloc, MenuState>(
+                      builder: (context, state) {
+                        if (state is MenuLoading) {
+                          return Container(
+                            height: 300,
+                            alignment: Alignment.center,
+                            child: const CircularProgressIndicator(
+                              color: ColorPalette.coffeeSelected,
+                            ),
+                          );
+                        } else if (state is MenuLoaded) {
+                          return SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            child: Container(
+                              color: const Color(0xFF0D0F14),
+                              padding: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
+                              child: GridView.count(
+                                padding: EdgeInsets.zero,
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                crossAxisSpacing: 15,
+                                mainAxisSpacing: 15,
+                                crossAxisCount: 2,
+                                childAspectRatio: 0.72,
+                                children: [
+                                  ...state.menus.map((e) {
+                                    return RequestCoffee(cItem: e);
+                                  }).toList()
+                                ],
+                              ),
+                            ),
+                          );
+                        } else if (state is MenuError) {
+                          return Center(
+                              child: Text(
+                            'Error: ${state.message}',
+                            style: const TextStyle(color: Colors.red),
+                          ));
+                        }
+                        return const Center(child: Text('Press the button to fetch posts'));
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),

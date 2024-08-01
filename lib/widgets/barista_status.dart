@@ -23,19 +23,16 @@ class BaristaStatusState extends State<BaristaStatus> {
       child: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
           String statusText = "Offline";
-          // Color statusColor = Colors.red;
+          Color statusColor = Colors.red;
           if (state is BaristaStatusLoaded && state.baristaStatus) {
-            print(state.baristaStatus);
-            setState(() {
-              statusText = "Online";
-              // statusColor = Colors.red;
-            });
+            statusText = "Online";
+            statusColor = Colors.green;
           }
 
           return Wrap(
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
-              const Iconify(Ci.dot_04_l, color: Colors.green),
+              Iconify(Ci.dot_04_l, color: statusColor),
               Text(
                 "Barista is $statusText",
                 style: GoogleFonts.sourceSans3(

@@ -14,7 +14,7 @@ class BackButton extends StatelessWidget {
         height: 35.0,
         width: 35.0,
         decoration: BoxDecoration(
-          color: ColorPalette.gradientTopLeft,
+          color: ColorPalette.gradientBottonRight,
           border: Border.all(
             color: ColorPalette.gradientTopLeft,
             width: 1.0,

@@ -14,7 +14,7 @@ class ApiService {
   Future<Map<String, dynamic>> authenticateUser(String email, String password) async {
     final response = await http.post(
       Uri.parse('$baseUrl/login'),
-      headers: {'Content-Type': accept},
+      headers: {'Content-Type': accept, 'Accept': accept},
       body: jsonEncode({'email': email, 'password': password}),
     );
 
@@ -68,6 +68,8 @@ class ApiService {
         'Authorization': 'Bearer $_token',
       },
     );
+
+    print(response.body);
 
     if (response.statusCode == 200) {
       return json.decode(response.body);
