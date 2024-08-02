@@ -3,6 +3,7 @@ import 'package:colorful_iconify_flutter/icons/vscode_icons.dart';
 import 'package:iconify_flutter/icons/game_icons.dart';
 import 'package:iconify_flutter/icons/iconoir.dart';
 import 'package:iconify_flutter/icons/material_symbols.dart';
+import 'package:iconify_flutter/icons/mdi.dart';
 import 'package:iconify_flutter/icons/tabler.dart';
 
 class IconPalette {
@@ -22,7 +23,7 @@ class IconPalette {
   static const String restricted = MaterialSymbols.warning_outline_rounded;
   static const String profile = MaterialSymbols.person_2_outline_rounded;
   static const String password = MaterialSymbols.key_outline_rounded;
-  static const String conversion = MaterialSymbols.sync_alt_rounded;
+  static const String conversion = MaterialSymbols.cached_rounded;
   static const String history = MaterialSymbols.note_alt_outline_rounded;
-  static const String request = MaterialSymbols.back_hand_outline_rounded;
+  static const String request = Mdi.transfer;
 }

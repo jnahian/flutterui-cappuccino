@@ -39,7 +39,7 @@ class OrderError extends OrderState {
 }
 
 class PendingOrderLoaded extends OrderState {
-  final List<Object> pendingOrders;
+  final List<dynamic> pendingOrders;
 
   const PendingOrderLoaded(this.pendingOrders);
 

@@ -14,7 +14,7 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
   Future<void> _onFetchNotifications(FetchNotifications event, Emitter<NotificationState> emit) async {
     emit(NotificationLoading());
     try {
-      final response = await apiService.getRequest('/notification');
+      final response = await apiService.getRequest('/notifications/previous');
       emit(NotificationLoaded(response['data']['notifications']));
     } catch (e) {
       emit(NotificationError(e.toString()));

@@ -10,12 +10,15 @@ import 'package:wp_cafe/bloc/auth_state.dart';
 import 'package:wp_cafe/bloc/menu_bloc.dart';
 import 'package:wp_cafe/bloc/menu_event.dart';
 import 'package:wp_cafe/bloc/menu_state.dart';
+import 'package:wp_cafe/bloc/order_bloc.dart';
+import 'package:wp_cafe/bloc/order_event.dart';
+import 'package:wp_cafe/bloc/order_state.dart';
 import 'package:wp_cafe/enums/color_palette.dart';
 import 'package:wp_cafe/enums/icon_palette.dart';
 import 'package:wp_cafe/models/statistic.dart';
 import 'package:wp_cafe/widgets/barista_status.dart';
 import 'package:wp_cafe/widgets/bottom_navigation.dart';
-import 'package:wp_cafe/widgets/request_coffee.dart';
+import 'package:wp_cafe/widgets/menu_item.dart';
 import 'package:wp_cafe/widgets/maintainance.dart';
 import 'package:wp_cafe/widgets/requested_item.dart';
 import 'package:wp_cafe/widgets/say_greeting.dart';
@@ -28,7 +31,6 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  dynamic coffeeItems;
 
   @override
   Widget build(BuildContext context) {
@@ -195,8 +197,33 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           fontWeight: FontWeight.bold, color: ColorPalette.textColor, fontSize: 18.0),
                     ),
                   ),
-                  const RequestedItem(),
-                  const Maintainance(),
+                  BlocProvider(
+                    create: (context) => OrderBloc()..add(FetchPendingOrders()),
+                    child: BlocBuilder<OrderBloc, OrderState>(
+                      builder: (context, state) {
+                        if (state is PendingOrderLoaded && state.pendingOrders.isNotEmpty) {
+                          return Column(
+                            children: [
+                              ...state.pendingOrders.map((po) => RequestedItem(item: po)),
+                            ],
+                          );
+                          // return RequestedItem();
+                        }
+                        return SizedBox();
+                      },
+                    ),
+                  ),
+                  BlocProvider(
+                    create: (context) => MenuBloc()..add(FetchMenus()),
+                    child: BlocBuilder<AuthBloc, AuthState>(
+                      builder: (context, state) {
+                        if (state is MaintananceStatusLoaded && state.maintainance) {
+                          return Maintainance();
+                        }
+                        return SizedBox();
+                      },
+                    ),
+                  ),
                   const SizedBox(height: 10.0),
                   BlocProvider(
                     create: (context) => MenuBloc()..add(FetchMenus()),
@@ -226,7 +253,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 childAspectRatio: 0.72,
                                 children: [
                                   ...state.menus.map((e) {
-                                    return RequestCoffee(cItem: e);
+                                    return MenuItem(cItem: e);
                                   }).toList()
                                 ],
                               ),

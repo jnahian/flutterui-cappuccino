@@ -4,29 +4,28 @@ import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/iconoir.dart';
 import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 import 'package:wp_cafe/enums/color_palette.dart';
-import 'package:wp_cafe/screens/request_coffee_screen.dart';
 
-class RequestCoffee extends StatefulWidget {
+class MenuItem extends StatefulWidget {
   final Map<String, dynamic> cItem;
-  const RequestCoffee({Key? key, required this.cItem}) : super(key: key);
+  const MenuItem({Key? key, required this.cItem}) : super(key: key);
 
   @override
-  _RequestCoffeeState createState() => _RequestCoffeeState();
+  MenuItemState createState() => MenuItemState();
 }
 
-class _RequestCoffeeState extends State<RequestCoffee> {
+class MenuItemState extends State<MenuItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => RequestCoffeeScreen(cItem: widget.cItem)));
+        Navigator.pushNamed(context, '/request', arguments: widget.cItem['id']);
       },
       child: Container(
         height: 220.0,
         // width: 150.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.0),
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: <Color>[
@@ -73,7 +72,7 @@ class _RequestCoffeeState extends State<RequestCoffee> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Iconify(
+                            const Iconify(
                               Iconoir.coffee_cup,
                               color: ColorPalette.coffeeSelected,
                               size: 15.0,

@@ -28,3 +28,14 @@ class MenuError extends MenuState {
   @override
   List<Object> get props => [message];
 }
+
+class MenuDetailsLoading extends MenuState {}
+
+class MenuDetailsLoaded extends MenuState {
+  final Map<String, dynamic> menu;
+
+  const MenuDetailsLoaded(this.menu);
+
+  @override
+  List<Object> get props => [menu];
+}

@@ -2,12 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wp_cafe/enums/color_palette.dart';
 import 'package:wp_cafe/utils/snackbar_util.dart';
+import 'package:wp_cafe/extensions/string_extension.dart';
+import 'package:wp_cafe/utils/string_util.dart';
 
-class RequestedItem extends StatelessWidget {
-  const RequestedItem({Key? key}) : super(key: key);
+class RequestedItem extends StatefulWidget {
+  final Map<String, dynamic> item;
+  const RequestedItem({Key? key, required this.item}) : super(key: key);
 
   @override
+  RequestedItemState createState() => RequestedItemState();
+}
+
+class RequestedItemState extends State<RequestedItem> {
+  @override
   Widget build(BuildContext context) {
+    
+    Color statusColor = widget.item['status'] == 'pending' ? ColorPalette.gray : ColorPalette.succees;
+
     return GestureDetector(
       onLongPress: () {
         SnackbarUtil(context).showSnackbar(message: 'Long pressed.');
@@ -44,28 +55,21 @@ class RequestedItem extends StatelessWidget {
                     // margin: EdgeInsets.only(bottom: 5.0),
                     decoration: BoxDecoration(
                       color: Colors.black12,
-                      image: const DecorationImage(
-                        image: AssetImage('assets/images/beansbottom.jpg'),
+                      image: DecorationImage(
+                        // image: AssetImage('assets/images/beansbottom.jpg'),
+                        image: NetworkImage(widget.item['menu']['thumbnail']!),
                         fit: BoxFit.cover,
                       ),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
-                  // Text(
-                  //   'Mocha',
-                  //   style: GoogleFonts.sourceSans3(
-                  //     color: ColorPalette.textColor,
-                  //     fontSize: 14.0,
-                  //     fontWeight: FontWeight.w600,
-                  //   ),
-                  // )
                 ],
               ),
             ),
             Container(
               width: MediaQuery.of(context).size.width - 145.0,
               height: 100.0,
-              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 9.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -80,7 +84,7 @@ class RequestedItem extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "Cappuccino",
+                                  widget.item['menu']['name'],
                                   style: GoogleFonts.sourceSans3(
                                     color: ColorPalette.textColor,
                                     fontSize: 17.0,
@@ -88,8 +92,8 @@ class RequestedItem extends StatelessWidget {
                                   ),
                                 ),
                                 Badge(
-                                  label: const Text('Pending'),
-                                  backgroundColor: ColorPalette.gray,
+                                  label: Text(StringUtil.capitalize(widget.item['status'])!),
+                                  backgroundColor: statusColor,
                                   textStyle: GoogleFonts.sourceSans3(
                                     color: ColorPalette.textColor,
                                     fontSize: 12.0,
@@ -100,21 +104,22 @@ class RequestedItem extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Serial Number: #4',
+                            'Serial Number: #${widget.item['serial_number'].toString()}',
                             style: GoogleFonts.sourceSans3(
                               color: ColorPalette.textColor,
                               fontSize: 14.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          // Text(
-                          //   '" 3 spoon sugar',
-                          //   style: GoogleFonts.sourceSans3(
-                          //     color: ColorPalette.textColor,
-                          //     fontSize: 14.0,
-                          //     fontWeight: FontWeight.w500,
-                          //   ),
-                          // ),
+                          if (widget.item['note'] != null && widget.item['note'].isNotEmpty)
+                            Text(
+                              '" ${widget.item['note']}',
+                              style: GoogleFonts.sourceSans3(
+                                color: ColorPalette.textColor,
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ) 
                         ],
                       )
                     ],
@@ -123,7 +128,7 @@ class RequestedItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        '25 Sec Ago | 05:30 PM',
+                        widget.item['time_changed_format'],
                         style: GoogleFonts.sourceSans3(
                           color: ColorPalette.textColor,
                           fontSize: 12.0,

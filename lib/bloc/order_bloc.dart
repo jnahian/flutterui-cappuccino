@@ -51,7 +51,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
   Future<void> _onFetchPendingOrders(FetchPendingOrders event, Emitter<OrderState> emit) async {
     try {
-      final response = await apiService.getRequest('/orders/pending');
+      final response = await apiService.getRequest('/order/pending');
       emit(PendingOrderLoaded(response['data']['orders']));
     } catch (e) {
       print(e);
