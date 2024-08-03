@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:wp_cafe/bloc/auth_bloc.dart';
 import 'package:wp_cafe/bloc/auth_event.dart';
+import 'package:wp_cafe/bloc/auth_state.dart';
 import 'package:wp_cafe/bloc/order_bloc.dart';
+import 'package:wp_cafe/enums/color_palette.dart';
 import 'package:wp_cafe/pages/error_page.dart';
 import 'package:wp_cafe/screens/dashboard_screen.dart';
 import 'package:wp_cafe/screens/login_screen.dart';
@@ -35,15 +37,6 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: "WPCafe",
         debugShowCheckedModeBanner: false,
-        // onGenerateRoute: (settings) {
-        //   if (settings.name == '/notifications') {
-        //     return MaterialPageRoute(
-        //       builder: (context) => NotificationScreen(),
-        //       fullscreenDialog: true, // Open as fullscreen dialog
-        //     );
-        //   }
-        //   return null;
-        // },
         onGenerateRoute: (settings) {
           final arguments = settings.arguments;
 
@@ -74,17 +67,51 @@ class MyApp extends StatelessWidget {
           }
         },
         initialRoute: '/',
-        home: DashboardScreen(),
-        routes: {
-          '/login': (context) => LoginScreen(),
-          '/notifications': (context) => NotificationScreen(),
-          '/settings': (context) => SettingScreen(),
-        },
+        home: AuthWrapper(),
+        // routes: {
+        //   '/login': (context) => LoginScreen(),
+        //   '/notifications': (context) => NotificationScreen(),
+        //   '/settings': (context) => SettingScreen(),
+        // },
       ),
     );
   }
 
   Route<dynamic> _errorRoute() {
     return MaterialPageRoute(builder: (context) => ErrorPage());
+  }
+}
+
+class AuthWrapper extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is Unauthenticated) {
+          Navigator.pushReplacementNamed(context, '/login');
+        } else if (state is Authenticated) {
+          Navigator.pushReplacementNamed(context, '/');
+        }
+      },
+      child: BlocBuilder<AuthBloc, AuthState>(
+        builder: (context, state) {
+          print("State: $state");
+          if (state is AuthInitial || state is Unauthenticated) {
+            return LoginScreen();
+          } else if (state is Authenticated || state is UserDataLoaded) {
+            return DashboardScreen();
+          } else {
+            return Scaffold(
+              backgroundColor: ColorPalette.scaffoldBg,
+              body: Center(
+                child: const CircularProgressIndicator(
+                  color: ColorPalette.coffeeSelected,
+                ),
+              ),
+            );
+          }
+        },
+      ),
+    );
   }
 }

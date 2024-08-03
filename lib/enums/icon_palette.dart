@@ -25,5 +25,5 @@ class IconPalette {
   static const String password = MaterialSymbols.key_outline_rounded;
   static const String conversion = MaterialSymbols.cached_rounded;
   static const String history = MaterialSymbols.note_alt_outline_rounded;
-  static const String request = Mdi.transfer;
+  static const String transfer = Mdi.transfer;
 }

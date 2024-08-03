@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:localstorage/localstorage.dart';
 
 abstract class AuthState extends Equatable {
   const AuthState();
@@ -20,7 +21,7 @@ class Authenticated extends AuthState {
   List<Object> get props => [token];
 }
 
-class UserLoggedOut extends AuthState {}
+class Unauthenticated extends AuthState {}
 
 class ForgotPassword extends AuthState {
   final String email;

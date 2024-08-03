@@ -26,14 +26,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(UserDataLoaded(response['data']['user']));
     } catch (e) {
       emit(AuthError(e.toString()));
+      emit(Unauthenticated());
     }
   }
 
   Future<void> _onLogoutUser(LogoutUser event, Emitter<AuthState> emit) async {
     try {
       final response = await apiService.logout();
+      print('Logout respons: $response');
       localStorage.removeItem('token');
-      emit(UserLoggedOut());
+      emit(Unauthenticated());
     } catch (e) {
       emit(AuthError(e.toString()));
     }
@@ -56,6 +58,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(UserDataLoaded(userData));
     } catch (e) {
       emit(AuthError(e.toString()));
+      emit(Unauthenticated());
     }
   }
 

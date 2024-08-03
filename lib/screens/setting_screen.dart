@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart' hide BackButton;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wp_cafe/bloc/auth_bloc.dart';
+import 'package:wp_cafe/bloc/auth_event.dart';
 import 'package:wp_cafe/enums/color_palette.dart';
 import 'package:wp_cafe/enums/icon_palette.dart';
 import 'package:wp_cafe/models/settings_menu_item.dart';
@@ -23,29 +26,35 @@ class _SettingScreenState extends State<SettingScreen> {
       SettingsMenuItem(
         title: "Edit Profile",
         icon: IconPalette.profile,
+        onTap: () => Navigator.pushNamed(context, '/settings/edit-profile'),
       ),
       SettingsMenuItem(
         title: "Change Password",
         icon: IconPalette.password,
+        onTap: () => Navigator.pushNamed(context, '/settings/change-password'),
       ),
       SettingsMenuItem(
         title: "Order History",
         icon: IconPalette.history,
+        onTap: () => Navigator.pushNamed(context, '/settings/order-history'),
       ),
       SettingsMenuItem(
         title: "Coffee Conversion",
         icon: IconPalette.conversion,
+        onTap: () => Navigator.pushNamed(context, '/settings/coffee-confersion'),
       ),
       SettingsMenuItem(
-        title: "Request Coffee",
-        icon: IconPalette.request,
+        title: "Coffee Transfer",
+        icon: IconPalette.transfer,
+        onTap: () => Navigator.pushNamed(context, '/settings/coffee-transfer'),
       ),
       SettingsMenuItem(
         title: "Logout",
         icon: IconPalette.logout,
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => const LoginScreen()),
-        ),
+        onTap: () => {
+          context.read<AuthBloc>()..add(LogoutUser()),
+          Navigator.pushReplacementNamed(context, '/login'),
+        },
       ),
     ];
 

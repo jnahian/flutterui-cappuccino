@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wp_cafe/enums/color_palette.dart';
 import 'package:wp_cafe/utils/snackbar_util.dart';
-import 'package:wp_cafe/extensions/string_extension.dart';
-import 'package:wp_cafe/utils/string_util.dart';
+import 'package:wp_cafe/utils/utils.dart';
 
 class RequestedItem extends StatefulWidget {
   final Map<String, dynamic> item;
@@ -92,7 +91,7 @@ class RequestedItemState extends State<RequestedItem> {
                                   ),
                                 ),
                                 Badge(
-                                  label: Text(StringUtil.capitalize(widget.item['status'])!),
+                                  label: Text(Utils.capitalize(widget.item['status'])!),
                                   backgroundColor: statusColor,
                                   textStyle: GoogleFonts.sourceSans3(
                                     color: ColorPalette.textColor,

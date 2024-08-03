@@ -15,7 +15,10 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     emit(NotificationLoading());
     try {
       final response = await apiService.getRequest('/notifications/previous');
-      emit(NotificationLoaded(response['data']['notifications']));
+      emit(NotificationLoaded(
+        response['data']['notifications']['data'],
+        response['data']['notifications']['pagination'],
+      ));
     } catch (e) {
       emit(NotificationError(e.toString()));
     }

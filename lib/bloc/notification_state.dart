@@ -13,11 +13,12 @@ class NotificationLoading extends NotificationState {}
 
 class NotificationLoaded extends NotificationState {
   final List<dynamic> notifications;
+  final Map<String, dynamic> pagination;
 
-  const NotificationLoaded(this.notifications);
+  const NotificationLoaded(this.notifications, this.pagination);
 
   @override
-  List<Object> get props => [notifications];
+  List<Object> get props => [notifications, pagination];
 }
 
 class NotificationError extends NotificationState {
